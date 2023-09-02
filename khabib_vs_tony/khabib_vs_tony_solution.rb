@@ -29,10 +29,10 @@ module Solution
       ap = action_power(upcase, exclamation)
       if action == 'submission' && habib_hp > tony_hp && tony_hp < 20
         habib_points += action_points(upcase, exclamation)
-        return 'Khabib won by submition' if habib_hp - tony_hp > (position == 'standing' ? 10 : 5)
+        return 'Khabib won by submission' if habib_hp - tony_hp > (position == 'standing' ? 10 : 5)
       elsif action == 'submission' && habib_hp < tony_hp && habib_hp < 20
         tony_points += action_points(upcase, exclamation)
-        return 'Tony won by submition' if tony_hp - habib_hp > (position == 'standing' ? 10 : 5)
+        return 'Tony won by submission' if tony_hp - habib_hp > (position == 'standing' ? 10 : 5)
       elsif %w[elbow punch kick].include?(action)
         return 'Tony won by KO' if habib_hp < (position == 'standing' ? 30 : 20) && ap == 10
         habib_hp -= ap

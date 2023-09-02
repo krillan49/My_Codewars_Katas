@@ -1,5 +1,5 @@
 module Kata
-  
+
   class JoeAndNate
     KHABIB = %w[jab overhand takedown нammerfist submission]
     TONY = %w[punch elbow kick imanary submission]
