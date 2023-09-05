@@ -1,7 +1,7 @@
 module Kata
 
   class JoeAndNate
-    KHABIB = %w[jab overhand takedown нammerfist submission]
+    KHABIB = %w[jab overhand takedown hammerfist submission]
     TONY = %w[punch elbow kick imanary submission]
     JOE = ["Oooh!!"]
     NATE = ["I'm not surprised motherfuckers!"]

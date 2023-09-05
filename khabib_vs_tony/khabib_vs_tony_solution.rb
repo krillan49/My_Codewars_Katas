@@ -1,6 +1,6 @@
 module Solution
 
-  KHABIB = %w[jab overhand takedown нammerfist submission]
+  KHABIB = %w[jab overhand takedown hammerfist submission]
   TONY = %w[elbow punch kick imanary submission]
 
   def action_power(upcase, exclamation)
@@ -24,7 +24,7 @@ module Solution
       upcase = action == action.upcase ? true : false
       exclamation = action[-1] == '!' ? true : false
       action = action.downcase.tr('!', '')
-      position = 'ground' if %w[takedown нammerfist imanary].include?(action)
+      position = 'ground' if %w[takedown hammerfist imanary].include?(action)
       position = 'standing' if %w[jab overhand punch kick].include?(action)
       ap = action_power(upcase, exclamation)
       if action == 'submission' && habib_hp > tony_hp && tony_hp < 20
@@ -36,13 +36,13 @@ module Solution
       elsif %w[elbow punch kick].include?(action)
         return 'Tony won by KO' if habib_hp < (position == 'standing' ? 30 : 20) && ap == 10
         habib_hp -= ap
-      elsif %w[jab overhand нammerfist].include?(action)
+      elsif %w[jab overhand hammerfist].include?(action)
         return 'Khabib won by KO' if tony_hp < (position == 'standing' ? 20 : 30) && ap == 10
         tony_hp -= ap
       end
-      return 'Tony won by TKO' if habib_hp == 0
-      return 'Khabib won by TKO' if tony_hp == 0
-      habib_points += action_points(upcase, exclamation) if %w[jab overhand нammerfist takedown].include?(action)
+      return 'Tony won by TKO' if habib_hp <= 0
+      return 'Khabib won by TKO' if tony_hp <= 0
+      habib_points += action_points(upcase, exclamation) if %w[jab overhand hammerfist takedown].include?(action)
       tony_points += action_points(upcase, exclamation) if %w[elbow punch kick imanary].include?(action)
     end
     return 'Khabib won by decision' if habib_points > tony_points
