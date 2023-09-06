@@ -26,19 +26,19 @@ describe JoeAndNate do
     expect(khabib_vs_tony(joe_and_nate)).to eq 'Khabib won by TKO'
   end
 
-  # it "sample test 4: Tony won by decision" do
-  #   joe_and_nate =
-  #   expect(khabib_vs_tony(joe_and_nate)).to eq khabib_vs_tony_solution(joe_and_nate)
-  # end
-  #
-  # it "sample test 5: Draw" do
-  #   joe_and_nate =
-  #   expect(khabib_vs_tony(joe_and_nate)).to eq khabib_vs_tony_solution(joe_and_nate)
-  # end
+  it "sample test 4: Tony won by decision" do
+    joe_and_nate = "It looks like the score is equal, everything will be decided by the last round. Khabib comes up with a jab, Tony hits back with a kick, another kick, Khabib catches his leg, he can’t go down, Tony hits with an elbow, another elbow. Khabib makes another attempt to move into the fight, again unsuccessfully, it seems Tony retained more strength at the end of the fight. Jab, kick, punch. These middle exchanges are clearly in favor of Tony. Khabib closes in, takedown, Tony in guard, he defends well, gets a hammerfist, but immediately responds with an elbow. Siren, let's see what the judges say."
+    expect(khabib_vs_tony(joe_and_nate)).to eq 'Tony won by decision'
+  end
 
-  # 100.times do
-  #   it "random test" do
-  #     expect(khabib_vs_tony(@joe_and_nate)).to eq khabib_vs_tony_solution(@joe_and_nate)
-  #   end
-  # end
+  it "sample test 5: Draw" do
+    joe_and_nate = "It looks like the score is equal, everything will be decided by the last round. Khabib comes up with a jab, Tony hits back with a kick, another kick, Khabib catches his leg, he can’t go down, Tony hits with an elbow, another elbow. Khabib makes another attempt to move into the fight, again unsuccessfully, it seems Tony retained more strength at the end of the fight. Jab, kick, punch. These middle exchanges are clearly in favor of Tony. Khabib closes in, takedown, Tony is on guard, he defends well but gets a hammerfist, and another HAMMERFIST. Siren, let's see what the judges say."
+    expect(khabib_vs_tony(joe_and_nate)).to eq 'Draw'
+  end
+
+  100.times do
+    it "random test" do
+      expect(khabib_vs_tony(@joe_and_nate)).to eq khabib_vs_tony_solution(@joe_and_nate)
+    end
+  end
 end

@@ -19,8 +19,6 @@ def khabib_vs_tony(joe_and_nate)
   habib_hp, tony_hp = 100, 100
   position = 'standing'
   joe_and_nate.scan(/#{(KHABIB + TONY).join('!?|')}/i).each do |action|
-    p tony_hp
-    # p habib_hp
     upcase = action == action.upcase ? true : false
     exclamation = action[-1] == '!' ? true : false
     action = action.downcase.tr('!', '')
@@ -50,11 +48,11 @@ def khabib_vs_tony(joe_and_nate)
   'Draw'
 end
 
-'elbow punch kick imanary submission jab overhand takedown hammerfist submission'
-"elbow! punch! kick! imanary! submission! jab! overhand! takedown! hammerfist! submission!"
-"ELBOW PUNCH KICK IMANARY SUBMISSION JAB OVERHAND TAKEDOWN HAMMERFIST SUBMISSION"
-"ELBOW! PUNCH! KICK! IMANARY! SUBMISSION! JAB! OVERHAND! TAKEDOWN! HAMMERFIST! SUBMISSION!"
-
-res = ""
-
-p khabib_vs_tony(res)
+# 'elbow punch kick imanary submission jab overhand takedown hammerfist submission'
+# "elbow! punch! kick! imanary! submission! jab! overhand! takedown! hammerfist! submission!"
+# "ELBOW PUNCH KICK IMANARY SUBMISSION JAB OVERHAND TAKEDOWN HAMMERFIST SUBMISSION"
+# "ELBOW! PUNCH! KICK! IMANARY! SUBMISSION! JAB! OVERHAND! TAKEDOWN! HAMMERFIST! SUBMISSION!"
+#
+# res = "It looks like the score is equal, everything will be decided by the last round. Khabib comes up with a jab, Tony hits back with a kick, another kick, Khabib catches his leg, he can’t go down, Tony hits with an elbow, another elbow. Khabib makes another attempt to move into the fight, again unsuccessfully, it seems Tony retained more strength at the end of the fight. Jab, kick, punch. These middle exchanges are clearly in favor of Tony. Khabib closes in, takedown, Tony is on guard, he defends well but gets a hammerfist, and another HAMMERFIST. Siren, let's see what the judges say."
+#
+# p khabib_vs_tony(res)
