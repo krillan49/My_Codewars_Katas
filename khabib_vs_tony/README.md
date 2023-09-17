@@ -52,20 +52,12 @@ __There is strange smoke and a suspicious smell coming from Joe and Nate, so the
 
 Output:
 -
-'Khabib won by KO'
-
-'Tony won by KO'
-
-'Khabib won by TKO'
-
-'Tony won by TKO'
-
-'Khabib won by submission'
-
-'Tony won by submission'
-
-'Khabib won by decision'
-
-'Tony won by decision'
-
-'Draw'
+* 'Khabib won by KO'
+* 'Tony won by KO'
+* 'Khabib won by TKO'
+* 'Tony won by TKO'
+* 'Khabib won by submission'
+* 'Tony won by submission'
+* 'Khabib won by decision'
+* 'Tony won by decision'
+* 'Draw'

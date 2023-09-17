@@ -5,7 +5,7 @@ require './test_solution'
 include Kata
 include Solution
 
-describe JoeAndNate do
+describe "Sample tests" do
   before do
     @joe_and_nate = JoeAndNate.new.comments
   end
@@ -36,8 +36,20 @@ describe JoeAndNate do
     expect(khabib_vs_tony(joe_and_nate)).to eq 'Draw'
   end
 
-  100.times do
-    it "random test" do
+  100.times do |n|
+    it "random test #{n+1}" do
+      expect(khabib_vs_tony(@joe_and_nate)).to eq khabib_vs_tony_solution(@joe_and_nate)
+    end
+  end
+end
+
+describe "Random tests" do
+  before do
+    @joe_and_nate = JoeAndNate.new.comments
+  end
+
+  100.times do |n|
+    it "random test #{n+1}" do
       expect(khabib_vs_tony(@joe_and_nate)).to eq khabib_vs_tony_solution(@joe_and_nate)
     end
   end
