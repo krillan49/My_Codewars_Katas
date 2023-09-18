@@ -15,44 +15,40 @@ def action_points(upcase, exclamation)
 end
 
 def khabib_vs_tony(joe_and_nate)
-  habib_points, tony_points = 0, 0
-  habib_hp, tony_hp = 100, 100
-  position = 'standing'
+  @habib_points, @tony_points = 0, 0
+  @habib_hp, @tony_hp = 100, 100
+  @position = 'standing'
   joe_and_nate.scan(/#{(KHABIB + TONY).join('!?|')}/i).each do |action|
     upcase = action == action.upcase ? true : false
     exclamation = action[-1] == '!' ? true : false
     action = action.downcase.tr('!', '')
-    position = 'ground' if %w[takedown hammerfist imanary].include?(action)
-    position = 'standing' if %w[jab overhand punch kick].include?(action)
+    @position = 'ground' if %w[takedown hammerfist imanary].include?(action)
+    @position = 'standing' if %w[jab overhand punch kick].include?(action)
     ap = action_power(upcase, exclamation)
-    if action == 'submission' && habib_hp > tony_hp && tony_hp < 20
-      habib_points += action_points(upcase, exclamation)
-      return 'Khabib won by submission' if habib_hp - tony_hp > (position == 'standing' ? 10 : 5)
-    elsif action == 'submission' && habib_hp < tony_hp && habib_hp < 20
-      tony_points += action_points(upcase, exclamation)
-      return 'Tony won by submission' if tony_hp - habib_hp > (position == 'standing' ? 10 : 5)
+    if action == 'submission' && @habib_hp > @tony_hp && @tony_hp < 20
+      @habib_points += action_points(upcase, exclamation)
+      return 'Khabib won by submission' if @habib_hp - @tony_hp > (@position == 'standing' ? 10 : 5)
+    elsif action == 'submission' && @habib_hp < @tony_hp && @habib_hp < 20
+      @tony_points += action_points(upcase, exclamation)
+      return 'Tony won by submission' if @tony_hp - @habib_hp > (@position == 'standing' ? 10 : 5)
     elsif %w[elbow punch kick].include?(action)
-      return 'Tony won by KO' if habib_hp < (position == 'standing' ? 30 : 20) && ap == 10
-      habib_hp -= ap
+      return 'Tony won by KO' if @habib_hp < (@position == 'standing' ? 30 : 20) && ap == 10
+      @habib_hp -= ap
     elsif %w[jab overhand hammerfist].include?(action)
-      return 'Khabib won by KO' if tony_hp < (position == 'standing' ? 20 : 30) && ap == 10
-      tony_hp -= ap
+      return 'Khabib won by KO' if @tony_hp < (@position == 'standing' ? 20 : 30) && ap == 10
+      @tony_hp -= ap
     end
-    return 'Tony won by TKO' if habib_hp <= 0
-    return 'Khabib won by TKO' if tony_hp <= 0
-    habib_points += action_points(upcase, exclamation) if %w[jab overhand hammerfist takedown].include?(action)
-    tony_points += action_points(upcase, exclamation) if %w[elbow punch kick imanary].include?(action)
+    return 'Tony won by TKO' if @habib_hp <= 0
+    return 'Khabib won by TKO' if @tony_hp <= 0
+    @habib_points += action_points(upcase, exclamation) if %w[jab overhand hammerfist takedown].include?(action)
+    @tony_points += action_points(upcase, exclamation) if %w[elbow punch kick imanary].include?(action)
   end
-  return 'Khabib won by decision' if habib_points > tony_points
-  return 'Tony won by decision' if habib_points < tony_points
+  return 'Khabib won by decision' if @habib_points > @tony_points
+  return 'Tony won by decision' if @habib_points < @tony_points
   'Draw'
 end
 
-# 'elbow punch kick imanary submission jab overhand takedown hammerfist submission'
-# "elbow! punch! kick! imanary! submission! jab! overhand! takedown! hammerfist! submission!"
-# "ELBOW PUNCH KICK IMANARY SUBMISSION JAB OVERHAND TAKEDOWN HAMMERFIST SUBMISSION"
-# "ELBOW! PUNCH! KICK! IMANARY! SUBMISSION! JAB! OVERHAND! TAKEDOWN! HAMMERFIST! SUBMISSION!"
-#
-# res = "It looks like the score is equal, everything will be decided by the last round. Khabib comes up with a jab, Tony hits back with a kick, another kick, Khabib catches his leg, he can’t go down, Tony hits with an elbow, another elbow. Khabib makes another attempt to move into the fight, again unsuccessfully, it seems Tony retained more strength at the end of the fight. Jab, kick, punch. These middle exchanges are clearly in favor of Tony. Khabib closes in, takedown, Tony is on guard, he defends well but gets a hammerfist, and another HAMMERFIST. Siren, let's see what the judges say."
-#
-# p khabib_vs_tony(res)
+# p khabib_vs_tony('elbow')
+# p [@habib_points, @tony_points]
+# p [@habib_hp, @tony_hp]
+# p @position

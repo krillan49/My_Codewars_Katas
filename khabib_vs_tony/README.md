@@ -7,10 +7,10 @@ Input:
 -
 
 __You get a line with comments from Joe and Nate, they contain:__
-1. Khabib's actions
-___jab overhand takedown hammerfist submission___
-2. Tony's actions
-___elbow punch kick imanary submission___
+1. Khabib's actions:
+___jab, overhand, takedown, hammerfist, submission___
+2. Tony's actions:
+___elbow, punch, kick, imanary, submission___
 3. Words from Joe and Nate that have nothing to do with the actions of the fighters
 
 Rules:
@@ -18,22 +18,26 @@ Rules:
 
 Initially, both fighters have __100 hit points__ and 0 points from the judges
 
-Judges award points for any actions of fighters
-Damage is caused by any action except:
-___takedown submission imanary___
-
-__Any actions can be of 4 types:__
-1. In the upper register - damage is __5 hit points__, judges give __2 points__
+__Rules for dealing damage and scoring judges' points for each action:__
+1. Upper case - damage is __5 hit points__, judges give __2 points__
+* example: ELBOW
 2. With an exclamation mark - damage __3 hit points__, judges give __2 points__
-3. In upper case and with an exclamation mark - damage is __10 hit points__, judges give __2 points__
+* example: elbow! or Elbow!
+3. Upper case and with an exclamation mark - damage is __10 hit points__, judges give __2 points__
+* example: ELBOW!
 4. Without an exclamation point and not the entire word in upper case - damage __1 hit point__, judges give __1 point__
+* example: elbow or Elbow
+5. Damage is always __0 hit point__ (regardless of case or exclamation mark) if the action is: ___takedown, submission, imanary___
+6. Judges never award points for ___submission___ (regardless of case or exclamation mark)
 
 __The fight can take place in 2 main positions, standing and on the floor.__
-1. Actions that mean that the position is now standing (change the position if it was on the floor, the position changes before calculating the damage for this action)
-___takedown hammerfist imanary___
-2. Actions that mean that the position is now on the floor (change the position if it was standing, the position changes before calculating the damage for this action)
-___jab overhand punch kick___
-3. Actions that do not change the position (the position remains the same as it was during the previous action) - all others except those indicated above.
+1. Starting position __standing__
+2. Actions that mean that the position is now standing (change the position if it was on the floor, the position changes before calculating the damage for this action):
+* ___takedown, hammerfist, imanary___
+3. Actions that mean that the position is now on the floor (change the position if it was standing, the position changes before calculating the damage for this action):
+* ___jab, overhand, punch, kick___
+4. Actions that do not change the position (the position remains the same as it was during the previous action):
+* ___elbow, submission___
 
 __Submission__ is always carried out by the fighter whose hit points are greater than those of the opponent, while the opponent's remaining hit points must be __less than 20__
 Otherwise, the submission is considered unsuccessful and does not bring points to anyone, so it doesn’t matter to us who performed it
