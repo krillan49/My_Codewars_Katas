@@ -1,5 +1,4 @@
 #  Если зарандомится одинаковое оружие итд ??
-#  Перераспределение урона оружий в сумке в зависимости от апов
 
 class Character
   attr_reader :name, :strength, :dexterity, :intelligence, :bag, :weapon # это уберется, тк смотрим через инфо
@@ -14,7 +13,7 @@ class Character
   end
 
   def character_info
-    "#{@name}\nstr #{@strength}\ndex #{@dexterity}\nint #{@intelligence}\n#{@weapon} #{@bag[@weapon][4]}dmg"
+    "#{@name}\nstr #{@strength}\ndex #{@dexterity}\nint #{@intelligence}\n#{@weapon} #{@bag[@weapon][4]} dmg"
   end
 
   def method_missing(method, *args)
@@ -27,13 +26,34 @@ class Character
 
   def weapon(weapon_name, dmg)
     @bag[weapon_name] = dmg + [dmg[0] * @strength + dmg[1] * @dexterity + dmg[2] * @intelligence + dmg[3]]
-    # p @bag
-    @weapon = @bag.max_by{|k, v| v[4]}[0]
+    best_weapon
     "#{@name} find '#{weapon_name}'"
+  end
+
+  def stats(event_name, stats)
+    @strength     += stats[0]
+    @dexterity    += stats[1]
+    @intelligence += stats[2]
+    weapons_adjustment
+    best_weapon
+    changes = [['strength', stats[0]], ['dexterity', stats[1]], ['intelligence', stats[2]]]
+    .reject{|a| a[1] == 0}.map{|a| a[1].even? ? a.join(' +') : a.join(' ')}.join(', ')
+    "#{event_name}: #{changes}"
+  end
+
+  def weapons_adjustment
+    @bag.each{|k, v| @bag[k] = v[0..3] + [v[0] * @strength + v[1] * @dexterity + v[2] * @intelligence + v[3]]}
+  end
+
+  def best_weapon # при одинаковом уроне, берем то у которого длиннее название(включая пробелы) тк круче звучит
+    @weapon = @bag.max_by{|k, v| [v[4], k.size]}[0]
   end
 end
 
 ch = Character.new(name: 'Kroker', strength: 15, dexterity: 8, intelligence: 7)
 # p [ch.name, ch.strength, ch.dexterity, ch.intelligence]
 p ch.weapon_axe_of_fire(3, 1, 0, 20)
+p ch.weapon_pistol(0, 2, 1, 50)
+p ch.stats_strange_fruit(0, 2, -1)
+p ch.bag
 puts ch.character_info
