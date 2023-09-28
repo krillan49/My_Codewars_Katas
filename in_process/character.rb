@@ -1,5 +1,3 @@
-#  Если зарандомится одинаковое оружие итд ??
-
 class Character
   attr_reader :name, :strength, :dexterity, :intelligence, :bag, :weapon # это уберется, тк смотрим через инфо
 
@@ -9,11 +7,13 @@ class Character
     @dexterity    = kwargs[:dexterity] || 10
     @intelligence = kwargs[:intelligence] || 10
     @bag          = {'limbs' => [1, 1, 1, 0, @strength + @dexterity + @intelligence]}
+    @enhanced     = []
     @weapon       = 'limbs'
   end
 
   def character_info
-    "#{@name}\nstr #{@strength}\ndex #{@dexterity}\nint #{@intelligence}\n#{@weapon} #{@bag[@weapon][4]} dmg"
+    e = @enhanced.include?(@weapon) ? '(enhanced)' : ''
+    "#{@name}\nstr #{@strength}\ndex #{@dexterity}\nint #{@intelligence}\n#{@weapon}#{e} #{@bag[@weapon][4]} dmg"
   end
 
   def method_missing(method, *args)
@@ -25,6 +25,11 @@ class Character
   private
 
   def weapon(weapon_name, dmg)
+    if @bag[weapon_name] # берем макс характеристики из обоих если попалось одинаковое оружие
+      old = @bag[weapon_name]
+      dmg = old[0..-2].zip(dmg).map(&:max)
+      @enhanced << weapon_name
+    end
     @bag[weapon_name] = dmg + [dmg[0] * @strength + dmg[1] * @dexterity + dmg[2] * @intelligence + dmg[3]]
     best_weapon
     "#{@name} find '#{weapon_name}'"
@@ -50,10 +55,14 @@ class Character
   end
 end
 
-ch = Character.new(name: 'Kroker', strength: 15, dexterity: 8, intelligence: 7)
+ch = Character.new(name: 'Kroker', strength: 15, intelligence: 7)
 # p [ch.name, ch.strength, ch.dexterity, ch.intelligence]
 p ch.weapon_axe_of_fire(3, 1, 0, 20)
-p ch.weapon_pistol(0, 2, 1, 50)
+puts ch.character_info
+p ch.weapon_staff_of_water(1, 0, 2, 50)
+puts ch.character_info
 p ch.stats_strange_fruit(0, 2, -1)
+puts ch.character_info
+ch.weapon_axe_of_fire(1, 2, 1, 10)
 p ch.bag
 puts ch.character_info
