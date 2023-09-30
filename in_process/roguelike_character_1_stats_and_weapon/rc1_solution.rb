@@ -74,3 +74,4 @@ end
 # ch.weapon_axe_of_fire(1, 2, 1, 10)
 # p ch.bag
 # puts ch.character_info
+# puts ch.event_log

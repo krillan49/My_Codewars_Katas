@@ -15,11 +15,12 @@ require './test_solution'
 # ch.weapon_axe_of_fire(1, 2, 1, 10)
 # p ch.bag
 # puts ch.character_info
+# puts ch.event_log
 
 describe "Sample tests" do
   before do
     @sol = Solution::Character.new(name: 'Kroker', strength: 15, intelligence: 7)
-    @test = TestSolution::Character.new(name: 'Kroker', strength: 15, intelligence: 7)
+    @test = Character.new(name: 'Kroker', strength: 15, intelligence: 7)
   end
 
   def test2
