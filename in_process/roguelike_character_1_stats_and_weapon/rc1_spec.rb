@@ -49,8 +49,6 @@ describe "Sample tests" do
     expect(@sol.character_info).to eq @test.character_info
   end
 
-  # Добавить тесты на вывод сообщения - нашел меч, получил прокляти
-
   it "sample test 2: Character find weapon" do
     test2
     expect(@sol.character_info).to eq @test.character_info
@@ -69,5 +67,10 @@ describe "Sample tests" do
   it "sample test 5: Character enchanced weapon" do
     test5
     expect(@sol.character_info).to eq @test.character_info
+  end
+
+  it "sample test 6: Show event log" do
+    test5
+    expect(@sol.event_log).to eq @test.event_log
   end
 end

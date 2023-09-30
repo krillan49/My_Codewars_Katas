@@ -1,7 +1,7 @@
 module Solution
-  
+
   class Character
-    attr_reader :name, :strength, :dexterity, :intelligence, :bag, :weapon, :enhanced
+    attr_reader :name, :strength, :dexterity, :intelligence, :bag, :weapon, :enhanced, :event_log
 
     def initialize(**kwargs)
       @name         = kwargs[:name]
@@ -11,11 +11,16 @@ module Solution
       @bag          = {'limbs' => [1, 1, 1, 0, @strength + @dexterity + @intelligence]}
       @enhanced     = []
       @weapon       = 'limbs'
+      @log          = []
     end
 
     def character_info
       e = @enhanced.include?(@weapon) ? '(enhanced)' : ''
       "#{@name}\nstr #{@strength}\ndex #{@dexterity}\nint #{@intelligence}\n#{@weapon}#{e} #{@bag[@weapon][4]} dmg"
+    end
+
+    def event_log
+      @log.join("\n")
     end
 
     def method_missing(method, *args)
@@ -34,7 +39,7 @@ module Solution
       end
       @bag[weapon_name] = dmg + [dmg[0] * @strength + dmg[1] * @dexterity + dmg[2] * @intelligence + dmg[3]]
       best_weapon
-      "#{@name} find '#{weapon_name}'"
+      @log << "#{@name} find '#{weapon_name}'"
     end
 
     def stats(event_name, stats)
@@ -45,7 +50,7 @@ module Solution
       best_weapon
       changes = [['strength', stats[0]], ['dexterity', stats[1]], ['intelligence', stats[2]]]
       .reject{|a| a[1] == 0}.map{|a| a[1].even? ? a.join(' +') : a.join(' ')}.join(', ')
-      "#{event_name}: #{changes}"
+      @log << "#{event_name}: #{changes}"
     end
 
     def weapons_adjustment
