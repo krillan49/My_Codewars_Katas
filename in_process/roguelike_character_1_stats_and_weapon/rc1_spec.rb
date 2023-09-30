@@ -75,3 +75,27 @@ describe "Sample tests" do
     expect(@sol.event_log).to eq @test.event_log
   end
 end
+
+
+describe "Random tests" do
+  before do
+    # name: 'Kroker'
+    stats, char_start = [:strength, :dexterity, :intelligence], []
+    rand(1..3).times do
+      stats.shuffle!
+      char_start << stats.pop
+    end
+    char_start.map{|st| [st, rand(5..15)]}.to_h
+    @sol = Solution::Character.new(**kwargs)
+    @test = Character.new(**kwargs)
+  end
+
+  50.times do |n|
+    it "info test #{n+1}" do
+      expect(@sol.character_info).to eq @test.character_info
+    end
+    it "log test #{n+1}" do
+      expect(@sol.event_log).to eq @test.event_log
+    end
+  end
+end
