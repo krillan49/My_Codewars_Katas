@@ -1,21 +1,6 @@
-# require './khabib_vs_tony'
 require './rc1_solution'
 require './test_solution'
 
-# include Kata
-# include Solution
-
-# ch = Character.new(name: 'Kroker', strength: 15, intelligence: 7)
-# p ch.weapon_axe_of_fire(3, 1, 0, 20)
-# puts ch.character_info
-# p ch.weapon_staff_of_water(1, 0, 2, 50)
-# puts ch.character_info
-# p ch.stats_strange_fruit(0, 2, -1)
-# puts ch.character_info
-# ch.weapon_axe_of_fire(1, 2, 1, 10)
-# p ch.bag
-# puts ch.character_info
-# puts ch.event_log
 
 describe "Sample tests" do
   before do
@@ -78,16 +63,43 @@ end
 
 
 describe "Random tests" do
+  def random_word
+    rand(3..10).times.with_object([]){|_, arr| arr << rand(97..122).chr}.join
+  end
+
   before do
-    # name: 'Kroker'
+    # start stats
     stats, char_start = [:strength, :dexterity, :intelligence], []
     rand(1..3).times do
       stats.shuffle!
       char_start << stats.pop
     end
-    char_start.map{|st| [st, rand(5..15)]}.to_h
-    @sol = Solution::Character.new(**kwargs)
-    @test = Character.new(**kwargs)
+    char_start = char_start.map{|st| [st, rand(5..15)]}.to_h
+    # name
+    char_start[:name] = random_word.capitalize
+    # obj
+    @sol = Solution::Character.new(**char_start)
+    @test = Character.new(**char_start)
+    # hash of events
+    events = rand(5..20).times.with_object([]) do |_, arr|
+      event = %w[weapon stats].sample
+      if event == 'weapon'
+        type = %w[sword axe mace spear staff].sample
+        element = (%w[fire water ice light dark] + [random_word]).sample
+        event += '_' + type + '_of_' + element
+        values = [rand(6), rand(6), rand(6), rand(100)]
+      else
+        type = (%w[strange_fruit blessing curse ancient_book elixir] + [random_word]).sample
+        event += '_' + type
+        values = [rand(-2..2), rand(-2..2), rand(-2..2)]
+      end
+      arr << [event, values]
+    end
+    # start events
+    events.each do |event, values|
+      @sol.send(event, *values)
+      @test.send(event, *values)
+    end
   end
 
   50.times do |n|

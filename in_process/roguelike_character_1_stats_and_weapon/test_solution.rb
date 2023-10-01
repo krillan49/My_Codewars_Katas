@@ -47,7 +47,7 @@ class Character
     weapons_adjustment
     best_weapon
     changes = [['strength', stats[0]], ['dexterity', stats[1]], ['intelligence', stats[2]]]
-    .reject{|a| a[1] == 0}.map{|a| a[1].even? ? a.join(' +') : a.join(' ')}.join(', ')
+    .reject{|a| a[1] == 0}.map{|a| a[1].positive? ? a.join(' +') : a.join(' ')}.join(', ')
     @log << "#{event_name}: #{changes}"
   end
 
@@ -71,3 +71,40 @@ end
 # p ch.bag
 # puts ch.character_info
 # puts ch.event_log
+
+
+# def random_word
+#   rand(3..10).times.with_object([]){|_, arr| arr << rand(97..122).chr}.join
+# end
+#
+# stats, char_start = [:strength, :dexterity, :intelligence], []
+# rand(1..3).times do
+#   stats.shuffle!
+#   char_start << stats.pop
+# end
+# char_start = char_start.map{|st| [st, rand(5..15)]}.to_h
+# char_start[:name] = random_word.capitalize
+# p @test = Character.new(**char_start)
+#
+# events = rand(5..10).times.with_object([]) do |_, arr|
+#   event = %w[weapon stats].sample
+#   if event == 'weapon'
+#     type = %w[sword axe mace spear staff].sample
+#     element = (%w[fire water ice light dark] + [random_word]).sample
+#     event += '_' + type + '_of_' + element
+#     values = [rand(6), rand(6), rand(6), rand(100)]
+#   else
+#     type = (%w[strange_fruit blessing curse ancient_book elixir] + [random_word]).sample
+#     event += '_' + type
+#     values = [rand(-2..2), rand(-2..2), rand(-2..2)]
+#   end
+#   arr << [event, values]
+# end
+#
+# p events
+#
+# events.each{|event, values| @test.send(event, *values)}
+#
+# puts @test.character_info
+# p '----------------'
+# puts @test.event_log

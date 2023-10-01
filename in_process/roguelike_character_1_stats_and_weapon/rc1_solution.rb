@@ -49,7 +49,7 @@ module Solution
       weapons_adjustment
       best_weapon
       changes = [['strength', stats[0]], ['dexterity', stats[1]], ['intelligence', stats[2]]]
-      .reject{|a| a[1] == 0}.map{|a| a[1].even? ? a.join(' +') : a.join(' ')}.join(', ')
+      .reject{|a| a[1] == 0}.map{|a| a[1].positive? ? a.join(' +') : a.join(' ')}.join(', ')
       @log << "#{event_name}: #{changes}"
     end
 
@@ -63,15 +63,3 @@ module Solution
   end
 
 end
-
-# ch = Character.new(name: 'Kroker', strength: 15, intelligence: 7)
-# p ch.weapon_axe_of_fire(3, 1, 0, 20)
-# puts ch.character_info
-# p ch.weapon_staff_of_water(1, 0, 2, 50)
-# puts ch.character_info
-# p ch.stats_strange_fruit(0, 2, -1)
-# puts ch.character_info
-# ch.weapon_axe_of_fire(1, 2, 1, 10)
-# p ch.bag
-# puts ch.character_info
-# puts ch.event_log
