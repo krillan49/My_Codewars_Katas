@@ -89,14 +89,13 @@ end
 #   if event == 'weapon'
 #     type = %w[sword axe mace spear staff].sample
 #     element = (%w[fire water ice light dark] + [random_word]).sample
-#     event += '_' + type + '_of_' + element
+#     res = type + '_of_' + element
 #     values = [rand(6), rand(6), rand(6), rand(100)]
 #   else
-#     type = (%w[strange_fruit blessing curse ancient_book elixir] + [random_word]).sample
-#     event += '_' + type
+#     res = (%w[strange_fruit blessing curse ancient_book elixir] + [random_word]).sample
 #     values = [rand(-2..2), rand(-2..2), rand(-2..2)]
 #   end
-#   arr << [event, values]
+#   arr << [res, values]
 # end
 #
 # p events
