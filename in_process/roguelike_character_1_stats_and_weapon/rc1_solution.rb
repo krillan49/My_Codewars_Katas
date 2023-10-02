@@ -1,8 +1,6 @@
 module Solution
 
   class Character
-    attr_reader :name, :strength, :dexterity, :intelligence, :bag, :weapon, :enhanced, :event_log
-
     def initialize(**kwargs)
       @name         = kwargs[:name]
       @strength     = kwargs[:strength] || 10
@@ -24,9 +22,8 @@ module Solution
     end
 
     def method_missing(method, *args)
-      event = method.to_s.split('_')
-      event_name = event[1..-1].join(' ').capitalize
-      send(event[0], event_name, args)
+      name = method.to_s.split('_').join(' ').capitalize
+      method.to_s.include?('_of_') ? weapon(name, args) : stats(name, args)
     end
 
     private

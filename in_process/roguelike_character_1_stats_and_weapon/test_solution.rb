@@ -1,6 +1,4 @@
 class Character
-  attr_reader :name, :strength, :dexterity, :intelligence, :bag, :weapon, :enhanced, :event_log
-
   def initialize(**kwargs)
     @name         = kwargs[:name]
     @strength     = kwargs[:strength] || 10
@@ -22,9 +20,8 @@ class Character
   end
 
   def method_missing(method, *args)
-    event = method.to_s.split('_')
-    event_name = event[1..-1].join(' ').capitalize
-    send(event[0], event_name, args)
+    name = method.to_s.split('_').join(' ').capitalize
+    method.to_s.include?('_of_') ? weapon(name, args) : stats(name, args)
   end
 
   private
@@ -61,15 +58,16 @@ class Character
 end
 
 # ch = Character.new(name: 'Kroker', strength: 15, intelligence: 7)
-# p ch.weapon_axe_of_fire(3, 1, 0, 20)
+# ch.axe_of_fire(3, 1, 0, 20)
 # puts ch.character_info
-# p ch.weapon_staff_of_water(1, 0, 2, 50)
+# ch.staff_of_water(1, 0, 2, 50)
 # puts ch.character_info
-# p ch.stats_strange_fruit(0, 2, -1)
+# ch.strange_fruit(0, 2, -1)
 # puts ch.character_info
-# ch.weapon_axe_of_fire(1, 2, 1, 10)
-# p ch.bag
+# ch.axe_of_fire(1, 2, 1, 10)
+# # p ch.bag
 # puts ch.character_info
+# p '---------'
 # puts ch.event_log
 
 
