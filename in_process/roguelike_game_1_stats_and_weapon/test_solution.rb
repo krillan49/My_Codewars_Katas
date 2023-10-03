@@ -58,17 +58,18 @@ class Character
 end
 
 # ch = Character.new(name: 'Kroker', strength: 15, intelligence: 7)
+# p ch.character_info
 # ch.axe_of_fire(3, 1, 0, 20)
-# puts ch.character_info
+# p ch.character_info
 # ch.staff_of_water(1, 0, 2, 50)
-# puts ch.character_info
+# p ch.character_info
 # ch.strange_fruit(0, 2, -1)
-# puts ch.character_info
+# p ch.character_info
 # ch.axe_of_fire(1, 2, 1, 10)
 # # p ch.bag
-# puts ch.character_info
+# p ch.character_info
 # p '---------'
-# puts ch.event_log
+# p ch.event_log
 
 
 # def random_word

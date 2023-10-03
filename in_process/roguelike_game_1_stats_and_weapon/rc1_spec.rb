@@ -4,60 +4,61 @@ require './test_solution'
 
 describe "Sample tests" do
   before do
-    @sol = Solution::Character.new(name: 'Kroker', strength: 15, intelligence: 7)
     @test = Character.new(name: 'Kroker', strength: 15, intelligence: 7)
   end
 
   def test2
-    @sol.weapon_axe_of_fire(3, 1, 0, 20)
-    @test.weapon_axe_of_fire(3, 1, 0, 20)
+    @test.axe_of_fire(3, 1, 0, 20)
   end
 
   def test3
     test2
-    @sol.weapon_staff_of_water(1, 0, 2, 50)
-    @test.weapon_staff_of_water(1, 0, 2, 50)
+    @test.staff_of_water(1, 0, 2, 50)
   end
 
   def test4
     test3
-    @sol.stats_strange_fruit(0, 2, -1)
-    @test.stats_strange_fruit(0, 2, -1)
+    @test.strange_fruit(0, 2, -1)
   end
 
   def test5
     test4
-    @sol.weapon_axe_of_fire(1, 2, 1, 10)
-    @test.weapon_axe_of_fire(1, 2, 1, 10)
+    @test.axe_of_fire(1, 2, 1, 10)
   end
 
   it "sample test 1: New character" do
-    expect(@sol.character_info).to eq @test.character_info
+    res = "Kroker\nstr 15\ndex 10\nint 7\nlimbs 32 dmg"
+    expect(@test.character_info).to eq res
   end
 
   it "sample test 2: Character find weapon" do
     test2
-    expect(@sol.character_info).to eq @test.character_info
+    res = "Kroker\nstr 15\ndex 10\nint 7\nAxe of fire 75 dmg"
+    expect(@test.character_info).to eq res
   end
 
   it "sample test 3: Character find second weapon" do
     test3
-    expect(@sol.character_info).to eq @test.character_info
+    res = "Kroker\nstr 15\ndex 10\nint 7\nStaff of water 79 dmg"
+    expect(@test.character_info).to eq res
   end
 
   it "sample test 4: Character stats modifer" do
     test4
-    expect(@sol.character_info).to eq @test.character_info
+    res = "Kroker\nstr 15\ndex 12\nint 6\nStaff of water 77 dmg"
+    expect(@test.character_info).to eq res
   end
 
   it "sample test 5: Character enchanced weapon" do
     test5
-    expect(@sol.character_info).to eq @test.character_info
+    res = "Kroker\nstr 15\ndex 12\nint 6\nAxe of fire(enhanced) 95 dmg"
+    expect(@test.character_info).to eq res
   end
 
   it "sample test 6: Show event log" do
     test5
-    expect(@sol.event_log).to eq @test.event_log
+    res = "Kroker find 'Axe of fire'\nKroker find 'Staff of water'\nStrange fruit: dexterity +2, intelligence -1\nKroker find 'Axe of fire'"
+    expect(@test.event_log).to eq res
   end
 end
 
@@ -103,10 +104,10 @@ describe "Random tests" do
 
   50.times do |n|
     it "info test #{n+1}" do
-      expect(@sol.character_info).to eq @test.character_info
+      expect(@test.character_info).to eq @sol.character_info
     end
     it "log test #{n+1}" do
-      expect(@sol.event_log).to eq @test.event_log
+      expect(@test.event_log).to eq @sol.event_log
     end
   end
 end
