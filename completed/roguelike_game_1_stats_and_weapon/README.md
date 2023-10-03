@@ -2,11 +2,11 @@ You need to create a Character class that can create a character for a roguelike
 
 Character:
 -
-The character has a __name__ and 3 main characteristics: __strength__, __dexterity__, __intelligence__. Characteristics are set randomly when creating a character; if some characteristic is not specified, then the default value is taken equal to __10__
+The character has a __name__ and 3 main characteristics: __strength__, __dexterity__, __intelligence__. Name and characteristics are set randomly when creating a character; if some characteristic is not specified, then the default value is taken equal to __10__, name default value is 'Hero'.
 
 Random events:
 -
-Character characteristics can be influenced by random events. The event occurs using an instance method, the name of which is the name of the event, and the parameters are how much each character characteristic will change (the order is always: strength, dexterity, intelligence), the values are always 3. For example, a curse with the values -2 0 1 will mean that the character’s strength has decreased by 2, agility has not changed, and intelligence has increased by 1
+Character characteristics can be influenced by random events. The event occurs using an instance method, the name of which is the name of the event, and the parameters are how much each character characteristic will change (the order is always: strength, dexterity, intelligence), the values are always 3. For example, a ancient curse with the values -2 0 1 will mean that the character’s strength has decreased by 2, agility has not changed, and intelligence has increased by 1
 
 Weapons:
 -

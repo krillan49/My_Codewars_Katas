@@ -90,7 +90,9 @@ describe "Random tests" do
         res = type + '_of_' + element
         values = [rand(6), rand(6), rand(6), rand(100)]
       else
-        res = (%w[strange_fruit blessing curse ancient_book elixir] + [random_word]).sample
+        type = %w[strange horrible ancient magical].sample
+        element = (%w[fruit blessing curse book elixir] + [random_word]).sample
+        res = type + '_' + element
         values = [rand(-2..2), rand(-2..2), rand(-2..2)]
       end
       arr << [res, values]

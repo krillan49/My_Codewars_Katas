@@ -1,6 +1,6 @@
 class Character
   def initialize(**kwargs)
-    @name         = kwargs[:name]
+    @name         = kwargs[:name] || 'Hero'
     @strength     = kwargs[:strength] || 10
     @dexterity    = kwargs[:dexterity] || 10
     @intelligence = kwargs[:intelligence] || 10
