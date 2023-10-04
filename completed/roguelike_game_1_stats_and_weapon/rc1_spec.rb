@@ -45,7 +45,7 @@ describe "Sample tests" do
 
   it "sample test 4: Character stats modifer" do
     test4
-    res = "Kroker\nstr 15\ndex 12\nint 6\nStaff of water 77 dmg"
+    res = "Kroker\nstr 15\ndex 12\nint 6\nAxe of fire 77 dmg"
     expect(@test.character_info).to eq res
   end
 

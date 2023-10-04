@@ -22,8 +22,7 @@ The character keeps all the weapons he finds.
 
 If a character has 2 weapons with the same name, then he enchants one of them and destroys the second, enchanting gives the new weapon the characteristics that are maximum from each weapon, for example from the sword of light (1 0 3 70) and the sword of light (3 2 1 50 ) you get a sword of light (3 2 3 70). In the output, __(enchanted)__ is added to the name of the improved weapon, but for the new enchantment it is considered the same as the weapon of the same name without this suffix, that is, you can combine an improved one with an unimproved one if you come across a 3rd one that is the same
 
-The character should __always choose the weapon with the highest damage__, for example if he received a stronger weapon or a random event changed his characteristics so that some weapon from previously found became stronger.
-Of 2 weapons with the same damage, the character chooses the one whose name is longer, as it sounds cooler
+The character should __always choose the weapon with the highest damage__, for example if he received a stronger weapon or a random event changed his characteristics so that some weapon from previously found became stronger. If 2 weapons have the same damage, then choose the first one in alphabetical order.
 
 Output methods:
 -

@@ -55,7 +55,7 @@ module Solution
     end
 
     def best_weapon # при одинаковом уроне, берем то у которого длиннее название(включая пробелы) тк круче звучит
-      @weapon = @bag.max_by{|k, v| [v[4], k.size]}[0]
+      @weapon = @bag.min_by{|k, v| [-v[4], k]}[0]
     end
   end
 
