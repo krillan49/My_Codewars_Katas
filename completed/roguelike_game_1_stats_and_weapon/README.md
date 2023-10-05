@@ -98,7 +98,7 @@ Kroker
 str 15
 dex 12
 int 6
-Staff of water 77 dmg
+Axe of fire 77 dmg
 ```
 9. The character finds weapons with the same name as the first one and can make them stronger
 ```bash
