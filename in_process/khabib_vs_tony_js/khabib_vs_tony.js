@@ -27,6 +27,17 @@ describe("Sample tests", () => {
 });
 
 describe("Random tests", () => {
+  const khabib = ['jab', 'overhand', 'takedown', 'hammerfist', 'submission'];
+  const tony = ['punch', 'elbow', 'kick', 'imanary', 'submission'];
+  const joe = ["Oooh!!"];
+  const nate = ["I'm not surprised motherfuckers!"];
+
+  function kataHelper() {
+    var res = [];
+    var str = khabib.concat(tony, joe, nate)[Math.round(Math.random() * 11)];
+    return str;
+  }
+
   function solution(str){
     return ;
   }
