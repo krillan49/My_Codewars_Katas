@@ -49,7 +49,7 @@ describe("Random tests", () => {
       // let s = '';
       // for (let i = 0; i < 4; i++)
       //   s += chars[~~(Math.random() * 7)];
-      // assert.strictEqual(tripleX(s), solution(s), `Testing for str = ${JSON.stringify(s)}`);
+      assert.strictEqual(tripleX(s), solution(s), `Testing for str = ${JSON.stringify(s)}`);
     })
   }
 });
