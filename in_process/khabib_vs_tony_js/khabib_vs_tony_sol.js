@@ -12,12 +12,53 @@ function actionPoints(upcase, exclamation){
   return upcase || exclamation ? 2 : 1;
 }
 
+var counter = 0;
+
 function khabibVsTony(joeAndNate){
   var habibPoints = 0, tonyPoints = 0, habibHp = 100, tonyHp = 100, position = 'standing';
-  joeAndNate = joeAndNate.replace(/ .(!+)/g, '!')
-  console.log(joeAndNate)
+  joeAndNate.split(' ').filter(s => khabib.concat(tony).includes(s.toLowerCase().replace(/[^a-z]/g, ''))).forEach(action => {
+    action = action.replace(/[^a-z!]/gi, '');
+    var upcase = action == action.toUpperCase() ? true : false;
+    var exclamation = action[action.length-1] == '!' ? true : false;
 
-  return ;
+    var res = [action, upcase, exclamation];
+
+    action = action.toLowerCase().replace('!', '');
+    if (['takedown', 'hammerfist', 'imanary'].includes(action)) position = 'ground';
+    if (['jab', 'overhand', 'punch', 'kick'].includes(action)) position = 'standing';
+    var ap = actionPower(upcase, exclamation);
+
+    res.push(position, ap);
+    // console.log(res);
+    counter += 1;
+    // console.log(counter);
+
+    if (action == 'submission' && habibHp > tonyHp && tonyHp < 20) {
+      habibPoints += actionPoints(upcase, exclamation);
+      if (habibHp - tonyHp > (position == 'standing' ? 10 : 5)) return 'Khabib won by submission';
+    } else if (action == 'submission' && habibHp < tonyHp && habibHp < 20) {
+      tonyPoints += actionPoints(upcase, exclamation);
+      if (tonyHp - habibHp > (position == 'standing' ? 10 : 5)) return 'Tony won by submission';
+    } else if (['elbow', 'punch', 'kick'].includes(action)) {
+      if (habibHp < (position == 'standing' ? 30 : 20) && ap == 10) return 'Tony won by KO';
+      habibHp -= ap;
+    } else if (['jab', 'overhand', 'hammerfist'].includes(action)) {
+      // if (tonyHp < (position == 'standing' ? 20 : 30) && ap == 10) return 'Khabib won by KO';
+      if (tonyHp < (position == 'standing' ? 20 : 30) && ap == 10) {
+        if (counter == 14) console.log([tonyHp, position, ap]);
+        return 'Khabib won by KO';
+      };
+      // if (counter == 14) console.log([tonyHp, position, ap]);
+      tonyHp -= ap;
+    };
+    if (habibHp <= 0) return 'Tony won by TKO';
+    if (tonyHp <= 0) return 'Khabib won by TKO';
+    if (['jab', 'overhand', 'hammerfist', 'takedown'].includes(action)) habibPoints += actionPoints(upcase, exclamation);
+    if (['elbow', 'punch', 'kick', 'imanary'].includes(action)) tonyPoints += actionPoints(upcase, exclamation);
+  });
+  if (habibPoints > tonyPoints) return 'Khabib won by decision';
+  if (habibPoints < tonyPoints) return 'Tony won by decision';
+  return 'Draw';
 }
 
 var joeAndNate = "First round! The fighters are in the center, Khabib delivers a power jab! and immediately OVERHAND! Tony felt it. Ferguson tries to break the distance with a kick, but another OVERHAND! Tony staggers. Takedown, Khabib easily moved the shocked opponent, trying to make a submission, but Tony's jiujitsu works. Hammerfist, HAMMERFIST, HAMMERFIST! Tony's doing bad, he can only try to survive. Hammerfist! HAMMERFIST! HAMMERFIST! HAMMERFIST! HAMMERFIST! Ferguson sweeps and slides out, all is not lost for him! He is shaking, can he survive until the end of the round? Khabib clamps down on his jab. Jab!, OVERHAND! Knockout!!! Incredible domination, I did not expect such an easy victory for Khabib.";
