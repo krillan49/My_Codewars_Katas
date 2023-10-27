@@ -14,8 +14,6 @@ def action_points(upcase, exclamation)
   res
 end
 
-# @counter = 0
-
 def khabib_vs_tony(joe_and_nate)
   @habib_points, @tony_points = 0, 0
   @habib_hp, @tony_hp = 100, 100
@@ -23,19 +21,10 @@ def khabib_vs_tony(joe_and_nate)
   joe_and_nate.scan(/#{(KHABIB + TONY).join('!?|')}/i).each do |action|
     upcase = action == action.upcase ? true : false
     exclamation = action[-1] == '!' ? true : false
-
-    # res = [action, upcase, exclamation]
-
     action = action.downcase.tr('!', '')
     @position = 'ground' if %w[takedown hammerfist imanary].include?(action)
     @position = 'standing' if %w[jab overhand punch kick].include?(action)
     ap = action_power(upcase, exclamation)
-
-    # res.push(@position, ap)
-    # p res
-    # @counter += 1
-    # p @counter
-
     if action == 'submission' && @habib_hp > @tony_hp && @tony_hp < 20
       @habib_points += action_points(upcase, exclamation)
       return 'Khabib won by submission' if @habib_hp - @tony_hp > (@position == 'standing' ? 10 : 5)
@@ -58,11 +47,6 @@ def khabib_vs_tony(joe_and_nate)
   return 'Tony won by decision' if @habib_points < @tony_points
   'Draw'
 end
-
-# p khabib_vs_tony('elbow')
-# p [@habib_points, @tony_points]
-# p [@habib_hp, @tony_hp]
-# p @position
 
 joe_and_nate = "First round! The fighters are in the center, Khabib delivers a power jab! and immediately OVERHAND! Tony felt it. Ferguson tries to break the distance with a kick, but another OVERHAND! Tony staggers. Takedown, Khabib easily moved the shocked opponent, trying to make a submission, but Tony's jiujitsu works. Hammerfist, HAMMERFIST, HAMMERFIST! Tony's doing bad, he can only try to survive. Hammerfist! HAMMERFIST! HAMMERFIST! HAMMERFIST! HAMMERFIST! Ferguson sweeps and slides out, all is not lost for him! He is shaking, can he survive until the end of the round? Khabib clamps down on his jab. Jab!, OVERHAND! Knockout!!! Incredible domination, I did not expect such an easy victory for Khabib."
 p khabib_vs_tony(joe_and_nate) # 'Khabib won by KO'
