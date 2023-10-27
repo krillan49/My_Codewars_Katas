@@ -39,7 +39,7 @@ function khabibVsTony(joeAndNate){
       if (tonyHp < (position == 'standing' ? 20 : 30) && ap == 10) return 'Khabib won by KO';
       tonyHp -= ap;
     };
-    
+
     if (habibHp <= 0) return 'Tony won by TKO';
     if (tonyHp <= 0) return 'Khabib won by TKO';
     if (['jab', 'overhand', 'hammerfist', 'takedown'].includes(action)) habibPoints += actionPoints(upcase, exclamation);
