@@ -28,7 +28,6 @@ __Rules for dealing damage and scoring judges' points for each action:__
 4. Without an exclamation point and not the entire word in upper case - damage __1 hit point__, judges give __1 point__
 * example: elbow or Elbow
 5. Damage is always __0 hit point__ (regardless of case or exclamation mark) if the action is: ___takedown, submission, imanary___
-6. Judges never award points for ___submission___ (regardless of case or exclamation mark)
 
 __The fight can take place in 2 main positions, standing and on the floor.__
 1. Starting position __standing__
@@ -43,12 +42,10 @@ __Submission__ is always carried out by the fighter whose hit points are greater
 Otherwise, the submission is considered unsuccessful and does not bring points to anyone, so it doesn’t matter to us who performed it
 
 __The result of the battle can be:__
-1. __Knockout__. To win by knockout, you need to deal __10 damage__ in one action, and the remaining(remaining before this action) hit points were less than:
-__30__ for Tony's hit points if the position is on the floor or for Khabib's hit points if the position is standing
-__20__ for Khabib's hit points if the position is standing or for Tony's hit points if the position is on the floor
+1. __Knockout__. To win by knockout, you need to deal 10 damage in one action and the remaining (remaining before this action) hit points were less than: for Tony, __30__ hit points if the position is on the floor, otherwise __20__ if the position is standing. For Khabib, __30__ hit points if the position is standing otherwise __20__ if the position is on the floor.
 2. __Technical knockout__. To win using this method, the hit points of one of the fighters must become __0 or less__.
 (if both a knockout and technical knockout occurred at the same time, then the result is a knockout)
-3. __Submission__. To win using this method, it is necessary (in addition to the conditions for submission) that the number of hit points of the victim be __less__ than the number of hit points of the attacker by __10__ if the position is standing or by __5__ if the position is on the floor.
+3. __Submission__. To win using this method, it is necessary (in addition to the conditions for submission) that the difference in the number of hit points between the attacker and opponent is greater than __10__ if the position is standing otherwise by __5__ if the position is on the floor.
 4. __Victory on points__. Possible if no one has won ahead of schedule until the end of the battle, then you need to count the judges’ points, whoever scored more wins, or a draw if there is a tie
 
 __There is strange smoke and a suspicious smell coming from Joe and Nate, so they can continue to comment on the fight even if it has already ended early by knockout or submission, you should not pay attention to them after that__
