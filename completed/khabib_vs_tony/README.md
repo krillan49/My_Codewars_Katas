@@ -32,9 +32,9 @@ __Rules for dealing damage and scoring judges' points for each action:__
 __The fight can take place in 2 main positions, standing and on the floor.__
 1. Starting position __standing__
 2. Actions that mean that the position is now standing (change the position if it was on the floor, the position changes before calculating the damage for this action):
-* ___takedown, hammerfist, imanary___
-3. Actions that mean that the position is now on the floor (change the position if it was standing, the position changes before calculating the damage for this action):
 * ___jab, overhand, punch, kick___
+3. Actions that mean that the position is now on the floor (change the position if it was standing, the position changes before calculating the damage for this action):
+* ___takedown, hammerfist, imanary___
 4. Actions that do not change the position (the position remains the same as it was during the previous action):
 * ___elbow, submission___
 
