@@ -11,8 +11,19 @@ describe "Sample tests" do
     expect(khabib_vs_tony(joe_and_nate)).to eq 'Khabib won by KO'
   end
 
+  it "clear sample test 1: Khabib won by KO" do
+    joe_and_nate = "jab! OVERHAND! kick OVERHAND! Takedown submission Hammerfist HAMMERFIST HAMMERFIST! Hammerfist! HAMMERFIST! HAMMERFIST! HAMMERFIST! HAMMERFIST! jab Jab! OVERHAND!"
+    "Khabib won by KO"
+    expect(khabib_vs_tony(joe_and_nate)).to eq 'Khabib won by KO'
+  end
+
   it "sample test 2: Tony won by submission" do
     joe_and_nate = "Khabib tries to pull Tony to the cage, hits the jab, but misses. ELBOW! from the turn, how did he catch him! Khabib backs away like he's shocked and got a cut above his eye, blood starts to fill his eye, Tony is chasing, kick! More KICK, PUNCH! ELBOW! More PUNCH, Khabib got another cut, his whole face is in blood, he can't see anything. Khabib does a takedown and Tony closes the guard. Khabib tries to hit, but he sees almost nothing, bumps into an ELBOW! ELBOW! ELBOW! Another ELBOW! New cuts, Khabib's face becomes like a bloody mask. Tony throws a triangle, tightens, it looks like Khabib passed out, excellent submission. Yes, Tony is horrendous, the real El Cucuy."
+    expect(khabib_vs_tony(joe_and_nate)).to eq 'Tony won by submission'
+  end
+
+  it "clear sample test 2: Tony won by submission" do
+    joe_and_nate = "jab ELBOW! kick! KICK PUNCH! ELBOW! PUNCH takedown ELBOW! ELBOW! ELBOW! ELBOW! submission"
     expect(khabib_vs_tony(joe_and_nate)).to eq 'Tony won by submission'
   end
 
@@ -22,13 +33,28 @@ describe "Sample tests" do
     expect(khabib_vs_tony(joe_and_nate)).to eq 'Khabib won by TKO'
   end
 
+  it "clear sample test 3: Khabib won by TKO" do
+    joe_and_nate = "jab kick jab OVERHAND! takedown hammerfist HAMMERFIST HAMMERFIST! hammerfist HAMMERFIST HAMMERFIST! elbow hammerfist HAMMERFIST HAMMERFIST! kick punch kick hammerfist hammerfist HAMMERFIST! HAMMERFIST HAMMERFIST HAMMERFIST HAMMERFIST HAMMERFIST HAMMERFIST"
+    expect(khabib_vs_tony(joe_and_nate)).to eq 'Khabib won by TKO'
+  end
+
   it "sample test 4: Tony won by decision" do
     joe_and_nate = "It looks like the score is equal, everything will be decided by the last round. Khabib comes up with a jab, Tony hits back with a kick, another kick, Khabib catches his leg, he can’t go down, Tony hits with an elbow, another elbow. Khabib makes another attempt to move into the fight, again unsuccessfully, it seems Tony retained more strength at the end of the fight. Jab, kick, punch. These middle exchanges are clearly in favor of Tony. Khabib closes in, takedown, Tony in guard, he defends well, gets a hammerfist, but immediately responds with an elbow. Siren, let's see what the judges say."
     expect(khabib_vs_tony(joe_and_nate)).to eq 'Tony won by decision'
   end
 
+  it "clear sample test 4: Tony won by decision" do
+    joe_and_nate = "jab kick kick elbow elbow Jab kick punch takedown hammerfist elbow"
+    expect(khabib_vs_tony(joe_and_nate)).to eq 'Tony won by decision'
+  end
+
   it "sample test 5: Draw" do
     joe_and_nate = "It looks like the score is equal, everything will be decided by the last round. Khabib comes up with a jab, Tony hits back with a kick, another kick, Khabib catches his leg, he can’t go down, Tony hits with an elbow, another elbow. Khabib makes another attempt to move into the fight, again unsuccessfully, it seems Tony retained more strength at the end of the fight. Jab, kick, punch. These middle exchanges are clearly in favor of Tony. Khabib closes in, takedown, Tony is on guard, he defends well but gets a hammerfist, and another HAMMERFIST. Siren, let's see what the judges say."
+    expect(khabib_vs_tony(joe_and_nate)).to eq 'Draw'
+  end
+
+  it "clear sample test 5: Draw" do
+    joe_and_nate = "jab kick kick elbow elbow Jab kick punch takedown hammerfist HAMMERFIST"
     expect(khabib_vs_tony(joe_and_nate)).to eq 'Draw'
   end
 end
