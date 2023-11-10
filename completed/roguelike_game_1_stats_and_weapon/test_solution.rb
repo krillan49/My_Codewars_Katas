@@ -52,7 +52,7 @@ class Character
     @bag.each{|k, v| @bag[k] = v[0..3] + [v[0] * @strength + v[1] * @dexterity + v[2] * @intelligence + v[3]]}
   end
 
-  def best_weapon # при одинаковом уроне, берем то у которого длиннее название(включая пробелы) тк круче звучит
+  def best_weapon # при одинаковом уроне, берем по названию в алфавитном порядке
     @weapon = @bag.min_by{|k, v| [-v[4], k]}[0]
   end
 end
