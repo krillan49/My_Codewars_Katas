@@ -131,7 +131,7 @@ describe("Random tests", () => {
     return word;
   }
 
-  function startStats() {
+  function startChar() {
     var stats = ['strength', 'dexterity', 'intelligence'];
     var charObj = {};
     var rand = Math.floor(Math.random()*3)+1;
@@ -141,16 +141,15 @@ describe("Random tests", () => {
       charObj[stat] = Math.floor(Math.random()*11)+5;
       rand--;
     }
+    var rw = randomWord()
+    charObj.name = rw[0].toUpperCase() + rw.slice(1)
     return charObj;
   }
 
+  // ...
+
   // before do
   //
-  //   # name
-  //   char_start[:name] = random_word.capitalize
-  //   # obj
-  //   @sol = Solution::Character.new(**char_start)
-  //   @test = Character.new(**char_start)
   //   # hash of events
   //   events = rand(5..20).times.with_object([]) do |_, arr|
   //     event = %w[weapon stats].sample
@@ -167,15 +166,28 @@ describe("Random tests", () => {
   //     end
   //     arr << [res, values]
   //   end
+
   //   # start events
   //   events.each do |event, values|
   //     @sol.send(event, *values)
   //     @test.send(event, *values)
   //   end
+
   // end
 
   // tests
-  for (let n = 1; n < 101; n++) {
+  for (let n = 1; n <= 50; n++) {
+
+    var charStart = startChar();
+    var sol = new CharForTest(charStart);
+    var test = new Character(charStart);
+    //   it "info test #{n+1}" do
+    //     expect(@test.character_info).to eq @sol.character_info
+    //   end
+    //   it "log test #{n+1}" do
+    //     expect(@test.event_log).to eq @sol.event_log
+    //   end
+
     it(`random test ${n}`, () => {
       var s = kataHelper();
       assert.strictEqual(khabibVsTony(s), solution(s));
@@ -183,12 +195,5 @@ describe("Random tests", () => {
       // JSON.stringify(s) - выводит ввод
     });
   }
-  // 50.times do |n|
-  //   it "info test #{n+1}" do
-  //     expect(@test.character_info).to eq @sol.character_info
-  //   end
-  //   it "log test #{n+1}" do
-  //     expect(@test.event_log).to eq @sol.event_log
-  //   end
-  // end
+
 });
