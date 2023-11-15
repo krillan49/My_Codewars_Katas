@@ -146,53 +146,51 @@ describe("Random tests", () => {
     return charObj;
   }
 
-  // ...
-
-  // before do
-  //
-  //   # hash of events
-  //   events = rand(5..20).times.with_object([]) do |_, arr|
-  //     event = %w[weapon stats].sample
-  //     if event == 'weapon'
-  //       type = %w[sword axe mace spear staff].sample
-  //       element = (%w[fire water ice light dark] + [random_word]).sample
-  //       res = type + '_of_' + element
-  //       values = [rand(6), rand(6), rand(6), rand(100)]
-  //     else
-  //       type = %w[strange horrible ancient magical].sample
-  //       element = (%w[fruit blessing curse book elixir] + [random_word]).sample
-  //       res = type + '_' + element
-  //       values = [rand(-2..2), rand(-2..2), rand(-2..2)]
-  //     end
-  //     arr << [res, values]
-  //   end
-
-  //   # start events
-  //   events.each do |event, values|
-  //     @sol.send(event, *values)
-  //     @test.send(event, *values)
-  //   end
-
-  // end
+  function events() { // 2d array of events
+    var rand = Math.floor(Math.random()*16)+5;
+    var arr = [];
+    while (rand > 0) {
+      var event = ['weapon', 'stats'][Math.floor(Math.random()*2)];
+      if (event == 'weapon') {
+        var type = ['sword', 'axe', 'mace', 'spear', 'staff'][Math.floor(Math.random()*5)];
+        var element = ['fire', 'water', 'ice', 'light', 'dark', randomWord()][Math.floor(Math.random()*6)];
+        var res = type + 'Of' + element[0].toUpperCase() + element.slice(1);
+        var values = [
+          Math.floor(Math.random()*7), Math.floor(Math.random()*7),
+          Math.floor(Math.random()*7), Math.floor(Math.random()*101)
+        ];
+      } else {
+        var type = ['strange', 'horrible', 'ancient', 'magical'][Math.floor(Math.random()*4)];
+        var element = ['fruit', 'blessing', 'curse', 'book', 'elixir', randomWord()][Math.floor(Math.random()*6)];
+        var res = type + element[0].toUpperCase() + element.slice(1);
+        var values = [Math.floor(Math.random()*5)-2, Math.floor(Math.random()*5)-2, Math.floor(Math.random()*5)-2];
+      }
+      arr.push([res, values]);
+      rand--;
+    }
+    return arr;
+  }
 
   // tests
   for (let n = 1; n <= 50; n++) {
-
+    // chars
     var charStart = startChar();
     var sol = new CharForTest(charStart);
     var test = new Character(charStart);
-    //   it "info test #{n+1}" do
-    //     expect(@test.character_info).to eq @sol.character_info
-    //   end
-    //   it "log test #{n+1}" do
-    //     expect(@test.event_log).to eq @sol.event_log
-    //   end
+    // events
+    var events = events();
+    events.forEach(arr => {
+      var event = arr[0], values = arr[1];
+      sol[event](...values);
+      test[event](...values);
+    });
 
-    it(`random test ${n}`, () => {
-      var s = kataHelper();
-      assert.strictEqual(khabibVsTony(s), solution(s));
-      // assert.strictEqual(khabibVsTony(s), solution(s), `Testing for: ${JSON.stringify(s)}`);
-      // JSON.stringify(s) - выводит ввод
+    it(`info test ${n}`, () => {
+      assert.strictEqual(test.characterInfo(), sol.characterInfo());
+    });
+
+    it(`log test ${n}`, () => {
+      assert.strictEqual(test.eventLog(), sol.eventLog());
     });
   }
 
