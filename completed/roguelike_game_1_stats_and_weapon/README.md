@@ -12,15 +12,15 @@ Weapons:
 -
 The character can find, store, equip, and enchant weapons.
 
-Weapons can be found using an instance method, the name of which is the name of the weapon, and the parameters are the coefficients by which the characteristics will be multiplied + additional damage. The weapon name is always weapon_of_something.
+Weapons can be found using an instance method, the name of which is the name of the weapon, and the parameters are the coefficients by which the characteristics will be multiplied + additional damage. The weapon name is always __weapon_of_something__ (Ruby), __weaponOfSomething__ (JS).
 
-Weapon damage consists of 3 coefficients, which give damage depending on characteristics and additional damage. For example, a sword of light with values of 3 2 1 50 would mean that the damage is: 3 * strength + 2 * agility + 1 * intellect + 50 (always the order: strength, agility, intellect, extra damage), the damage values are always 4.
+Weapon damage consists of 3 coefficients, which give damage depending on characteristics and additional damage. For example, a sword of light with __values of 3 2 1 50__ would mean that the damage is: __3 * strength + 2 * agility + 1 * intellect + 50__ (always the order: strength, agility, intellect, extra damage), the damage values are always 4.
 
 Initially, the character is armed only with his limbs, the damage from which is equal to the sum of his characteristics.
 
 The character keeps all the weapons he finds.
 
-If a character has 2 weapons with the same name, then he enchants one of them and destroys the second, enchanting gives the new weapon the characteristics that are maximum from each weapon, for example from the sword of light (1 0 3 70) and the sword of light (3 2 1 50 ) you get a sword of light (3 2 3 70). In the output, __(enchanted)__ is added to the name of the improved weapon, but for the new enchantment it is considered the same as the weapon of the same name without this suffix, that is, you can combine an improved one with an unimproved one if you come across a 3rd one that is the same
+If a character has 2 weapons with the same name, then he enchants one of them and destroys the second, enchanting gives the new weapon the characteristics that are maximum from each weapon, for example from the __sword of light (1 0 3 70)__ and the __sword of light (3 2 1 50 )__ you get a __sword of light (3 2 3 70)__. In the output, __(enchanted)__ is added to the name of the improved weapon, but for the new enchantment it is considered the same as the weapon of the same name without this suffix, that is, you can combine an improved one with an unimproved one if you come across a 3rd one that is the same
 
 The character should __always choose the weapon with the highest damage__, for example if he received a stronger weapon or a random event changed his characteristics so that some weapon from previously found became stronger. If 2 weapons have the same damage, then choose the first one in alphabetical order.
 
@@ -28,25 +28,39 @@ Output methods:
 -
 The Character class must have 2 mandatory instance methods, the output of which will be checked by tests
 
-__character_info__ - returns character information as a string. For example, for a Goblin character with strength 5, agility 15, intelligence 3 and dagger of poison with a total damage of 60:
+__character_info__ / __characterInfo()__ - returns character information as a string. For example, for a Goblin character with strength 5, agility 15, intelligence 3 and dagger of poison with a total damage of 60:
 ```bash
+# Ruby:
 "Goblin\nstr 5\ndex 15\nint 3\nDagger of poison 60 dmg"
+# JS:
+`Goblin\nstr 5\ndex 15\nint 3\nDagger of poison 60 dmg`
 ```
 
-__event_log__ - returns all events as a string. Each event on a new line:
+__event_log__ / __eventLog()__ - returns all events as a string. Each event on a new line:
 ```bash
+# Ruby:
 "Goblin find 'Dagger of poison'\nStrange fruit: dexterity +2, intelligence -1"
+# JS:
+`Goblin find 'Dagger of poison'\nStrange fruit: dexterity +2, intelligence -1`
 ```
 
 Example:
 -
 1. Create a new character
+
 ```bash
-ch = Character.new(name: 'Kroker', strength: 15, intelligence: 7)
+# Ruby:
+ch = Character.new(name: 'Kroker', strength: 15, intelligence: 7)  
+# JS:
+var ch = new Character({name: 'Kroker', strength: 15, intelligence: 7});
 ```
 2. Let's check, the missing characteristic will be equal to 10, and the weapon will be limbs
+
 ```bash
+# Ruby:
 puts ch.character_info
+# JS:
+console.log(ch.characterInfo());
 ```
 ```bash
 Kroker
@@ -56,13 +70,15 @@ int 7
 limbs 32 dmg
 ```
 3. The character finds a weapon
+
 ```bash
+# Ruby:
 ch.axe_of_fire(3, 1, 0, 20)
+# JS:
+ch.axeOfFire(3, 1, 0, 20);
 ```
 4. The weapon and its total damage should appear in the output
-```bash
-puts ch.character_info
-```
+
 ```bash
 Kroker
 str 15
@@ -71,13 +87,15 @@ int 7
 Axe of fire 75 dmg
 ```
 5. The character finds a weapon that will give him more damage
+
 ```bash
+# Ruby:
 ch.staff_of_water(1, 0, 2, 50)
+# JS:
+ch.staffOfWater(1, 0, 2, 50);
 ```
 6. Accordingly, the weapon in the output changes
-```bash
-puts ch.character_info
-```
+
 ```bash
 Kroker
 str 15
@@ -86,13 +104,15 @@ int 7
 Staff of water 79 dmg
 ```
 7. An event occurs that changes characteristics
+
 ```bash
+# Ruby:
 ch.strange_fruit(0, 2, -1)
+# JS:
+ch.strangeFruit(0, 2, -1);
 ```
 8. Accordingly, the character’s characteristics and weapon damage, if they affected him, have changed in the output
-```bash
-puts ch.character_info
-```
+
 ```bash
 Kroker
 str 15
@@ -101,13 +121,15 @@ int 6
 Axe of fire 77 dmg
 ```
 9. The character finds weapons with the same name as the first one and can make them stronger
+
 ```bash
+# Ruby:
 ch.axe_of_fire(1, 2, 1, 10)
+# JS:
+ch.axeOfFire(1, 2, 1, 10);
 ```
 10. The output shows enhanced weapons
-```bash
-puts ch.character_info
-```
+
 ```bash
 Kroker
 str 15
@@ -116,8 +138,12 @@ int 6
 Axe of fire(enhanced) 95 dmg
 ```
 11. Event log displays all events in order
+
 ```bash
+# Ruby:
 puts ch.event_log
+# JS:
+console.log(ch.eventLog());
 ```
 ```bash
 Kroker find 'Axe of fire'

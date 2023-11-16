@@ -1,4 +1,4 @@
-require './rc1_solution'
+require './rg1_solution'
 require './test_solution'
 
 

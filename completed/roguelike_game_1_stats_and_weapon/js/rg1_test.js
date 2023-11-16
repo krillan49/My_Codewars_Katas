@@ -31,7 +31,7 @@ describe("Sample tests", () => {
     test.staffOfWater(1, 0, 2, 50);
     test.strangeFruit(0, 2, -1);
     var res = `Kroker\nstr 15\ndex 12\nint 6\nAxe of fire 77 dmg`;
-    assert.strictEqual(test.eventLog(), res);
+    assert.strictEqual(test.characterInfo(), res);
   });
 
   it("sample test 5: Character enchanced weapon", () => {
@@ -51,7 +51,7 @@ describe("Sample tests", () => {
     test.strangeFruit(0, 2, -1);
     test.axeOfFire(1, 2, 1, 10);
     var res = `Kroker find 'Axe of fire'\nKroker find 'Staff of water'\nStrange fruit: dexterity +2, intelligence -1\nKroker find 'Axe of fire'`;
-    assert.strictEqual(khabibVsTony(joAndNate), res);
+    assert.strictEqual(test.eventLog(), res);
   });
 
 });
@@ -178,8 +178,7 @@ describe("Random tests", () => {
     var sol = new CharForTest(charStart);
     var test = new Character(charStart);
     // events
-    var events = events();
-    events.forEach(arr => {
+    events().forEach(arr => {
       var event = arr[0], values = arr[1];
       sol[event](...values);
       test[event](...values);
