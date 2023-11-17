@@ -6,7 +6,7 @@ The character has a __name__ and 3 main characteristics: __strength__, __dexteri
 
 Random events:
 -
-Character characteristics can be influenced by random events. The event occurs using an instance method, the name of which is the name of the event, and the parameters are how much each character characteristic will change (the order is always: strength, dexterity, intelligence), the values are always 3. For example, a ancient curse with the values -2 0 1 will mean that the character’s strength has decreased by 2, agility has not changed, and intelligence has increased by 1
+Character characteristics can be influenced by random events. The event occurs using an instance method, the name of which is the name of the event, and the parameters are how much each character characteristic will change (the order is always: strength, dexterity, intelligence), the values are always 3. For example, a ancient curse with the values -2 0 1 will mean that the character’s strength has decreased by 2, dexterity has not changed, and intelligence has increased by 1
 
 Weapons:
 -
@@ -14,7 +14,7 @@ The character can find, store, equip, and enchant weapons.
 
 Weapons can be found using an instance method, the name of which is the name of the weapon, and the parameters are the coefficients by which the characteristics will be multiplied + additional damage. The weapon name is always __weapon_of_something__ (Ruby), __weaponOfSomething__ (JS).
 
-Weapon damage consists of 3 coefficients, which give damage depending on characteristics and additional damage. For example, a sword of light with __values of 3 2 1 50__ would mean that the damage is: __3 * strength + 2 * agility + 1 * intellect + 50__ (always the order: strength, agility, intellect, extra damage), the damage values are always 4.
+Weapon damage consists of 3 coefficients, which give damage depending on characteristics and additional damage. For example, a sword of light with __values of 3 2 1 50__ would mean that the damage is: __3 * strength + 2 * dexterity + 1 * intellect + 50__ (always the order: strength, dexterity, intellect, extra damage), the damage values are always 4.
 
 Initially, the character is armed only with his limbs, the damage from which is equal to the sum of his characteristics.
 
@@ -28,7 +28,7 @@ Output methods:
 -
 The Character class must have 2 mandatory instance methods, the output of which will be checked by tests
 
-__character_info__ / __characterInfo()__ - returns character information as a string. For example, for a Goblin character with strength 5, agility 15, intelligence 3 and dagger of poison with a total damage of 60:
+__character_info__ / __characterInfo()__ - returns character information as a string. For example, for a Goblin character with strength 5, dexterity 15, intelligence 3 and dagger of poison with a total damage of 60:
 ```bash
 # Ruby:
 "Goblin\nstr 5\ndex 15\nint 3\nDagger of poison 60 dmg"
