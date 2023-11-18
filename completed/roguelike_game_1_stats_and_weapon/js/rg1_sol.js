@@ -59,14 +59,15 @@ class Character {
   }
 }
 
-var ch = new Character({name: 'Kroker', strength: 15, intelligence: 7});
+// var ch = new Character({name: 'Kroker', strength: 15, intelligence: 7});
+var ch = new Character({intelligence: 1});
 // console.log(ch.characterInfo());
 ch.axeOfFire(3, 1, 0, 20);
 // console.log(ch.characterInfo());
 ch.staffOfWater(1, 0, 2, 50);
 // console.log(ch.characterInfo());
 ch.strangeFruit(0, 2, -1);
-// console.log(ch.characterInfo());
+console.log(ch.characterInfo());
 ch.axeOfFire(1, 2, 1, 10);
 // console.log(ch.bag);
 // console.log(ch.characterInfo());

@@ -142,7 +142,8 @@ describe("Random tests", () => {
       rand--;
     }
     var rw = randomWord()
-    charObj.name = rw[0].toUpperCase() + rw.slice(1)
+    // charObj.name = rw[0].toUpperCase() + rw.slice(1)
+    if (Math.floor(Math.random()*11) < 9) charObj.name = rw[0].toUpperCase() + rw.slice(1);
     return charObj;
   }
 

@@ -77,7 +77,8 @@ describe "Random tests" do
     end
     char_start = char_start.map{|st| [st, rand(5..15)]}.to_h
     # name
-    char_start[:name] = random_word.capitalize
+    # char_start[:name] = random_word.capitalize
+    char_start[:name] = random_word.capitalize if rand(6) < 5
     # obj
     @sol = Solution::Character.new(**char_start)
     @test = Character.new(**char_start)
