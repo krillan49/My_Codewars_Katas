@@ -34,21 +34,26 @@ If a character has 2 weapons with the same name, then he enchants one of them an
 
 Output methods:
 -
-The Character class must have 2 mandatory instance methods, the output of which will be checked by tests
+The Character class must have 2 mandatory instance methods, the output of which will be checked by tests:
+1. __character info__ method returns character information as a multiline string.
+2. __event log__ method returns all events as a string. Each event on a new line
 
-__character_info__ / __characterInfo()__ - returns character information as a string. For example, for a Goblin character with strength 5, dexterity 15, intelligence 3 and dagger of poison with a total damage of 60:
-```bash
-# Ruby:
+```ruby
+ch = Character.new(name: 'Goblin', strength: 5, dexterity: 13, intelligence: 6)
+ch.dagger_of_poison(1, 2, 1, 20)
+ch.strange_fruit(0, 2, -1)
+ch.character_info #=>
 "Goblin\nstr 5\ndex 15\nint 3\nDagger of poison 60 dmg"
-# JS:
-`Goblin\nstr 5\ndex 15\nint 3\nDagger of poison 60 dmg`
-```
-
-__event_log__ / __eventLog()__ - returns all events as a string. Each event on a new line:
-```bash
-# Ruby:
+ch.event_log #=>
 "Goblin find 'Dagger of poison'\nStrange fruit: dexterity +2, intelligence -1"
-# JS:
+```
+```javascript
+const ch = new Character({name: 'Goblin', strength: 5, dexterity: 13, intelligence: 6});
+ch.daggerOfPoison(1, 2, 1, 20);
+ch.strangeFruit(0, 2, -1);
+ch.characterInfo(); //=>
+`Goblin\nstr 5\ndex 15\nint 3\nDagger of poison 60 dmg`
+ch.eventLog(); //=>
 `Goblin find 'Dagger of poison'\nStrange fruit: dexterity +2, intelligence -1`
 ```
 
@@ -56,21 +61,21 @@ Example:
 -
 1. Create a new character
 
-```bash
-# Ruby:
+```ruby
 ch = Character.new(name: 'Kroker', strength: 15, intelligence: 7)  
-# JS:
+```
+```javascript
 const ch = new Character({name: 'Kroker', strength: 15, intelligence: 7});
 ```
 2. Let's check, the missing characteristic will be equal to 10, and the weapon will be limbs
 
-```bash
-# Ruby:
+```ruby
 puts ch.character_info
-# JS:
+```
+```javascript
 console.log(ch.characterInfo());
 ```
-```bash
+```
 Kroker
 str 15
 dex 10
@@ -79,15 +84,15 @@ limbs 32 dmg
 ```
 3. The character finds a weapon
 
-```bash
-# Ruby:
+```ruby
 ch.axe_of_fire(3, 1, 0, 20)
-# JS:
+```
+```javascript
 ch.axeOfFire(3, 1, 0, 20);
 ```
 4. The weapon and its total damage should appear in the output
 
-```bash
+```
 Kroker
 str 15
 dex 10
@@ -96,15 +101,15 @@ Axe of fire 75 dmg
 ```
 5. The character finds a weapon that will give him more damage
 
-```bash
-# Ruby:
+```ruby
 ch.staff_of_water(1, 0, 2, 50)
-# JS:
+```
+```javascript
 ch.staffOfWater(1, 0, 2, 50);
 ```
 6. Accordingly, the weapon in the output changes
 
-```bash
+```
 Kroker
 str 15
 dex 10
@@ -113,15 +118,15 @@ Staff of water 79 dmg
 ```
 7. An event occurs that changes characteristics
 
-```bash
-# Ruby:
+```ruby
 ch.strange_fruit(0, 2, -1)
-# JS:
+```
+```javascript
 ch.strangeFruit(0, 2, -1);
 ```
 8. Accordingly, the character’s characteristics and weapon damage, if they affected him, have changed in the output
 
-```bash
+```
 Kroker
 str 15
 dex 12
@@ -130,15 +135,15 @@ Axe of fire 77 dmg
 ```
 9. The character finds weapons with the same name as the first one and can make them stronger
 
-```bash
-# Ruby:
+```ruby
 ch.axe_of_fire(1, 2, 1, 10)
-# JS:
+```
+```javascript
 ch.axeOfFire(1, 2, 1, 10);
 ```
 10. The output shows enhanced weapons
 
-```bash
+```
 Kroker
 str 15
 dex 12
@@ -147,13 +152,13 @@ Axe of fire(enhanced) 95 dmg
 ```
 11. Event log displays all events in order
 
-```bash
-# Ruby:
+```ruby
 puts ch.event_log
-# JS:
+```
+```javascript
 console.log(ch.eventLog());
 ```
-```bash
+```
 Kroker find 'Axe of fire'
 Kroker find 'Staff of water'
 Strange fruit: dexterity +2, intelligence -1
