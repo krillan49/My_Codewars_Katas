@@ -10,19 +10,27 @@ Character characteristics can be influenced by random events. The event occurs u
 
 Weapons:
 -
-The character can find, store, equip, and enchant weapons.
+Initially, the character is armed only with his __limbs__(lowercase), the damage from which is equal to the sum of his characteristics.
+
+The character can __find__, __equip__, __store__, and __enchant__ weapons:
+
+__1. Find.__
 
 Weapons can be found using an instance method, the name of which is the name of the weapon, and the parameters are the coefficients by which the characteristics will be multiplied + additional damage. The weapon name is always __weapon_of_something__ (Ruby), __weaponOfSomething__ (JS).
 
+__2. Equip.__
+
 Weapon damage consists of 3 coefficients, which give damage depending on characteristics and additional damage. For example, a sword of light with __values of 3 2 1 50__ would mean that the damage is: __3 * strength + 2 * dexterity + 1 * intellect + 50__ (always the order: strength, dexterity, intellect, extra damage), the damage values are always 4.
 
-Initially, the character is armed only with his limbs, the damage from which is equal to the sum of his characteristics.
+The character should __always choose the weapon with the highest damage__, for example if he received a stronger weapon or a random event changed his characteristics so that some weapon from previously found became stronger. If 2 weapons have the same damage, then choose the first one in alphabetical order.
+
+__3. Store.__
 
 The character keeps all the weapons he finds.
 
-If a character has 2 weapons with the same name, then he enchants one of them and destroys the second, enchanting gives the new weapon the characteristics that are maximum from each weapon, for example from the __sword of light (1 0 3 70)__ and the __sword of light (3 2 1 50 )__ you get a __sword of light (3 2 3 70)__. In the output, __(enchanted)__ is added to the name of the improved weapon, but for the new enchantment it is considered the same as the weapon of the same name without this suffix, that is, you can combine an improved one with an unimproved one if you come across a 3rd one that is the same
+__4. Enchant.__
 
-The character should __always choose the weapon with the highest damage__, for example if he received a stronger weapon or a random event changed his characteristics so that some weapon from previously found became stronger. If 2 weapons have the same damage, then choose the first one in alphabetical order.
+If a character has 2 weapons with the same name, then he enchants one of them and destroys the second, enchanting gives the new weapon the characteristics that are maximum from each weapon, for example from the __sword of light (1 0 3 70)__ and the __sword of light (3 2 1 50 )__ you get a __sword of light (3 2 3 70)__. In the output, __(enchanted)__ is added to the name of the improved weapon, but for the new enchantment it is considered the same as the weapon of the same name without this suffix, that is, you can combine an improved one with an unimproved one if you come across a 3rd one that is the same
 
 Output methods:
 -
@@ -52,7 +60,7 @@ Example:
 # Ruby:
 ch = Character.new(name: 'Kroker', strength: 15, intelligence: 7)  
 # JS:
-var ch = new Character({name: 'Kroker', strength: 15, intelligence: 7});
+const ch = new Character({name: 'Kroker', strength: 15, intelligence: 7});
 ```
 2. Let's check, the missing characteristic will be equal to 10, and the weapon will be limbs
 
