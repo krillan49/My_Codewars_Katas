@@ -20,37 +20,37 @@ describe("Sample tests", () => {
   it("sample test 3: Character find second weapon", () => {
     const test = new Character({name: 'Kroker', strength: 15, intelligence: 7});
     test.axeOfFire(3, 1, 0, 20);
-    test.staffOfWater(1, 0, 2, 50);
-    const res = `Kroker\nstr 15\ndex 10\nint 7\nStaff of water 79 dmg`;
+    test.staffOfWater(1, 0, 2, 60);
+    const res = `Kroker\nstr 15\ndex 10\nint 7\nStaff of water 89 dmg`;
     assert.strictEqual(test.characterInfo(), res);
   });
 
-  it("sample test 4: Character stats modifer", () => {
+  it("sample test 4: Character enchanced weapon", () => {
     const test = new Character({name: 'Kroker', strength: 15, intelligence: 7});
     test.axeOfFire(3, 1, 0, 20);
-    test.staffOfWater(1, 0, 2, 50);
-    test.strangeFruit(0, 2, -1);
-    const res = `Kroker\nstr 15\ndex 12\nint 6\nAxe of fire 77 dmg`;
-    assert.strictEqual(test.characterInfo(), res);
-  });
-
-  it("sample test 5: Character enchanced weapon", () => {
-    const test = new Character({name: 'Kroker', strength: 15, intelligence: 7});
-    test.axeOfFire(3, 1, 0, 20);
-    test.staffOfWater(1, 0, 2, 50);
-    test.strangeFruit(0, 2, -1);
+    test.staffOfWater(1, 0, 2, 60);
     test.axeOfFire(1, 2, 1, 10);
-    const res = `Kroker\nstr 15\ndex 12\nint 6\nAxe of fire(enhanced) 95 dmg`;
+    const res = `Kroker\nstr 15\ndex 10\nint 7\nAxe of fire(enhanced) 92 dmg`;
+    assert.strictEqual(test.characterInfo(), res);
+  });
+
+  it("sample test 5: Character stats modifer", () => {
+    const test = new Character({name: 'Kroker', strength: 15, intelligence: 7});
+    test.axeOfFire(3, 1, 0, 20);
+    test.staffOfWater(1, 0, 2, 60);
+    test.axeOfFire(1, 2, 1, 10);
+    test.strangeFruit(-2, 0, 2);
+    const res = `Kroker\nstr 13\ndex 10\nint 9\nStaff of water 91 dmg`;
     assert.strictEqual(test.characterInfo(), res);
   });
 
   it("sample test 6: Show event log", () => {
     const test = new Character({name: 'Kroker', strength: 15, intelligence: 7});
     test.axeOfFire(3, 1, 0, 20);
-    test.staffOfWater(1, 0, 2, 50);
-    test.strangeFruit(0, 2, -1);
+    test.staffOfWater(1, 0, 2, 60);
     test.axeOfFire(1, 2, 1, 10);
-    const res = `Kroker find 'Axe of fire'\nKroker find 'Staff of water'\nStrange fruit: dexterity +2, intelligence -1\nKroker find 'Axe of fire'`;
+    test.strangeFruit(-2, 0, 2);
+    const res = `Kroker find 'Axe of fire'\nKroker find 'Staff of water'\nKroker find 'Axe of fire'\nStrange fruit: strength -2, intelligence +2`;
     assert.strictEqual(test.eventLog(), res);
   });
 

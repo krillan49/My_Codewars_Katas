@@ -59,10 +59,10 @@ class Character {
   }
 }
 
-const test = new Character({name: 'Pinky', strength: 5, dexterity: 5, intelligence: 5});
-test.strangeFruit(0, 2, -1);
-test.ancientBook(2, 1, -2);
-test.ancientBook(2, 1, -2);
+// const test = new Character({name: 'Pinky', strength: 5, dexterity: 5, intelligence: 5});
+// test.strangeFruit(0, 2, -1);
+// test.ancientBook(2, 1, -2);
+// test.ancientBook(2, 1, -2);
 // console.log(test.characterInfo());
 // console.log(test.intelligence);
 
@@ -70,11 +70,11 @@ test.ancientBook(2, 1, -2);
 // console.log(ch.characterInfo());
 // ch.axeOfFire(3, 1, 0, 20);
 // console.log(ch.characterInfo());
-// ch.staffOfWater(1, 0, 2, 50);
-// console.log(ch.characterInfo());
-// ch.strangeFruit(0, 2, -1);
+// ch.staffOfWater(1, 0, 2, 60);
 // console.log(ch.characterInfo());
 // ch.axeOfFire(1, 2, 1, 10);
+// console.log(ch.characterInfo());
+// ch.strangeFruit(-2, 0, 2);
 // console.log(ch.bag);
 // console.log(ch.characterInfo());
 // console.log(ch.eventLog());

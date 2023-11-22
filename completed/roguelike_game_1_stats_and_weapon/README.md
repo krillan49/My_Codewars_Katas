@@ -49,7 +49,7 @@ In this case, the Axe of fire has parameters `3, 1, 0, 20`. This means that the 
 3 * strength + 1 * dexterity + 0 * intelligence + 20 = 3 * 15 + 1 * 10 + 0 * 7 + 20 = 75
 ```
 
-The weapon and its total damage should appear in the output
+The weapon and its total damage should appear in the character info output. Damage computation calculation, hence the output of the character info thing is done with the stats of the Character at call time.
 
 ```
 Kroker
@@ -78,59 +78,27 @@ The character finds another weapon that will do more damage
 The character should always choose the weapon with the highest damage, if he received a stronger weapon, If 2 weapons have the same damage, then choose the first one in alphabetical order.
 
 ```ruby
-ch.staff_of_water(1, 0, 2, 50)
+ch.staff_of_water(1, 0, 2, 60)
 ```
 ```javascript
-ch.staffOfWater(1, 0, 2, 50);
+ch.staffOfWater(1, 0, 2, 60);
 ```
 
-Staff of water has 79 damage`(1 * 15 + 0 * 10 + 7 * 2 + 50)` this is more than the 'Axe of fire', which means we need to change weapons. Accordingly, the weapon in the output changes
+Staff of water has 89 damage`(1 * 15 + 0 * 10 + 7 * 2 + 60)` this is more than the 'Axe of fire', which means we need to change weapons.
 
 ```
 Kroker
 str 15
 dex 10
 int 7
-Staff of water 79 dmg
+Staff of water 89 dmg
 ```
+
 The character retains all the weapons found, that is, although we replaced the 'Axe of fire' with the 'Staff of water', the 'Axe of fire' will remain in the character’s inventory
-
-Random events that changes characteristics
--
-Character characteristics can be affected by random events. An event occurs using an instance method, the name of which is the name of the event, and the parameters (the order is always: strength, dexterity, intelligence; quantity is always 3) are stat modifiers
-
-```ruby
-ch.strange_fruit(0, 2, -1)
-```
-```javascript
-ch.strangeFruit(0, 2, -1);
-```
-
-The 'Strange fruit' does not change strength, as the first coefficient is 0, but it adds 2 dexterity and -1 intelligence.
-
-The character should always choose the weapon with the highest damage; if a random event changed its characteristics so that some weapon from the previously found one became stronger(or in alphabetical order by name, if damage is equal) than the one equipped, then you need to change to a stronger one from the inventory. Accordingly, we change the 'Staff of water' back to the 'Axe of fire' and the conclusion will be
-
-```
-Kroker
-str 15
-dex 12
-int 6
-Axe of fire 77 dmg
-```
-
-All random events end up in the event log
-
-```
-Kroker find 'Axe of fire'
-Kroker find 'Staff of water'
-Strange fruit: dexterity +2, intelligence -1
-```
-
-For random events, you do not need to specify modifiers equal to 0, but only those that changed the character's characteristics.
 
 Enchant
 -
-If a character has 2 weapons with the same name, then he enchants one of them and destroys the second, enchanting gives the new weapon the characteristics that are maximum from each weapon
+If a character has 2 weapons with the same name, then he enchants one of them and destroys the second.
 
 ```ruby
 ch.axe_of_fire(1, 2, 1, 10)
@@ -143,17 +111,42 @@ Now there are 2 'Axe of fire', so let’s enchant one of them by destroying the 
 ```math
 (3, 1, 0, 20) and (1, 2, 1, 10) => ((3>1=3), (1<2=2), (0<1=1), (20>10=20)) => (3, 2, 1, 20)
 ```
-The output shows enhanced weapons. In the output, `'(enchanted)'` is added to the name of the improved weapon
+The character info output shows enhanced weapons. In the output, `'(enchanted)'` is added to the name of the improved weapon
 
 ```
 Kroker
 str 15
-dex 12
-int 6
-Axe of fire(enhanced) 95 dmg
+dex 10
+int 7
+Axe of fire(enhanced) 92 dmg
 ```
 
 For the new enchantment it is considered the same as the weapon of the same name without '(enchanted)' suffix, that is, you can combine an improved one with an unimproved one if you come across a 3rd one that is the same
+
+Random events that changes characteristics
+-
+Character characteristics can be affected by random events. An event occurs using an instance method, the name of which is the name of the event, and the parameters (the order is always: strength, dexterity, intelligence; quantity is always 3) are stat modifiers
+
+```ruby
+ch.strange_fruit(-2, 0, 2)
+```
+```javascript
+ch.strangeFruit(-2, 0, 2);
+```
+
+The 'Strange fruit' does not change dexterity, as the 2nd coefficient is 0, but it adds -2 strength and +2 intelligence.
+
+The character should always choose the weapon with the highest damage; if a random event changed characteristics so that some weapon from the previously found one became stronger than the one equipped, then you need to change to a stronger one from the inventory. Accordingly, we change the 'Axe of fire(enhanced)'  back to the 'Staff of water'
+
+```
+Kroker
+str 13
+dex 10
+int 9
+Staff of water 91 dmg
+```
+
+All random events end up in the event log. For random events, you do not need to specify modifiers equal to 0, but only those that changed the character's characteristics.
 
 Event log displays all events in order
 -
@@ -169,6 +162,6 @@ console.log(ch.eventLog());
 ```
 Kroker find 'Axe of fire'
 Kroker find 'Staff of water'
-Strange fruit: dexterity +2, intelligence -1
 Kroker find 'Axe of fire'
+Strange fruit: strength -2, intelligence +2
 ```

@@ -13,17 +13,17 @@ describe "Sample tests" do
 
   def test3
     test2
-    @test.staff_of_water(1, 0, 2, 50)
+    @test.staff_of_water(1, 0, 2, 60)
   end
 
   def test4
     test3
-    @test.strange_fruit(0, 2, -1)
+    @test.axe_of_fire(1, 2, 1, 10)
   end
 
   def test5
     test4
-    @test.axe_of_fire(1, 2, 1, 10)
+    @test.strange_fruit(-2, 0, 2)
   end
 
   it "sample test 1: New character" do
@@ -39,25 +39,25 @@ describe "Sample tests" do
 
   it "sample test 3: Character find second weapon" do
     test3
-    res = "Kroker\nstr 15\ndex 10\nint 7\nStaff of water 79 dmg"
+    res = "Kroker\nstr 15\ndex 10\nint 7\nStaff of water 89 dmg"
     expect(@test.character_info).to eq res
   end
 
-  it "sample test 4: Character stats modifer" do
+  it "sample test 4: Character enchanced weapon" do
     test4
-    res = "Kroker\nstr 15\ndex 12\nint 6\nAxe of fire 77 dmg"
+    res = "Kroker\nstr 15\ndex 10\nint 7\nAxe of fire(enhanced) 92 dmg"
     expect(@test.character_info).to eq res
   end
 
-  it "sample test 5: Character enchanced weapon" do
+  it "sample test 5: Character stats modifer" do
     test5
-    res = "Kroker\nstr 15\ndex 12\nint 6\nAxe of fire(enhanced) 95 dmg"
+    res = "Kroker\nstr 13\ndex 10\nint 9\nStaff of water 91 dmg"
     expect(@test.character_info).to eq res
   end
 
   it "sample test 6: Show event log" do
     test5
-    res = "Kroker find 'Axe of fire'\nKroker find 'Staff of water'\nStrange fruit: dexterity +2, intelligence -1\nKroker find 'Axe of fire'"
+    res = "Kroker find 'Axe of fire'\nKroker find 'Staff of water'\nKroker find 'Axe of fire'\nStrange fruit: strength -2, intelligence +2"
     expect(@test.event_log).to eq res
   end
 end
