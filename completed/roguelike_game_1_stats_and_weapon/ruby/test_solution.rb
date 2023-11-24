@@ -34,7 +34,7 @@ class Character
     end
     @bag[weapon_name] = dmg + [dmg[0] * @strength + dmg[1] * @dexterity + dmg[2] * @intelligence + dmg[3]]
     best_weapon
-    @log << "#{@name} find '#{weapon_name}'"
+    @log << "#{@name} finds '#{weapon_name}'"
   end
 
   def stats(event_name, stats)

@@ -10,14 +10,14 @@ describe("Sample tests", () => {
     assert.strictEqual(test.characterInfo(), res);
   });
 
-  it("sample test 2: Character find weapon", () => {
+  it("sample test 2: Character finds weapon", () => {
     const test = new Character({name: 'Kroker', strength: 15, intelligence: 7});
     test.axeOfFire(3, 1, 0, 20);
     const res = `Kroker\nstr 15\ndex 10\nint 7\nAxe of fire 75 dmg`;
     assert.strictEqual(test.characterInfo(), res);
   });
 
-  it("sample test 3: Character find second weapon", () => {
+  it("sample test 3: Character finds second weapon", () => {
     const test = new Character({name: 'Kroker', strength: 15, intelligence: 7});
     test.axeOfFire(3, 1, 0, 20);
     test.staffOfWater(1, 0, 2, 60);
@@ -50,8 +50,15 @@ describe("Sample tests", () => {
     test.staffOfWater(1, 0, 2, 60);
     test.axeOfFire(1, 2, 1, 10);
     test.strangeFruit(-2, 0, 2);
-    const res = `Kroker find 'Axe of fire'\nKroker find 'Staff of water'\nKroker find 'Axe of fire'\nStrange fruit: strength -2, intelligence +2`;
-    assert.strictEqual(test.eventLog(), res);
+    const res = `Kroker finds 'Axe of fire'\nKroker finds 'Staff of water'\nKroker finds 'Axe of fire'\nStrange fruit: strength -2, intelligence +2`;
+
+    let rv = res.split("\n");
+    let message = [];
+    test.eventLog().split("\n").forEach((ev, i) => {
+      if (ev != rv[i]) message.push(`line ${i+1}. expected: ${rv[i]}; got: ${ev}`);
+    });
+
+    assert.strictEqual(test.eventLog(), res, JSON.stringify(message));
   });
 
   it("sample test 7: Character change stat to zero", () => {
@@ -104,7 +111,7 @@ describe("Random tests", () => {
       }
       this.bag[weaponName] = dmg.concat([dmg[0] * this.strength + dmg[1] * this.dexterity + dmg[2] * this.intelligence + dmg[3]]);
       this.bestWeapon();
-      this.log.push(`${this.name} find '${weaponName}'`);
+      this.log.push(`${this.name} finds '${weaponName}'`);
     }
     stats(eventName, stats) {
       this.strength     += stats[0];
@@ -199,7 +206,14 @@ describe("Random tests", () => {
     });
 
     it(`log test ${n}`, () => {
-      assert.strictEqual(test.eventLog(), sol.eventLog());
+
+      let rv = sol.eventLog().split("\n");
+      let message = [];
+      test.eventLog().split("\n").forEach((ev, i) => {
+        if (ev != rv[i]) message.push(`line ${i+1}. expected: ${rv[i]}; got: ${ev}`);
+      });
+
+      assert.strictEqual(test.eventLog(), sol.eventLog(), JSON.stringify(message));
     });
   }
 

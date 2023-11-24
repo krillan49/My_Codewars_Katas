@@ -1,3 +1,13 @@
+---
+
+Changes that break old solutions (section only for the beta period)
+-
+
+24.11.23 -- In the output of the `eventLog` method the word `find` was replaced with `finds`
+
+---
+
+
 To solve this kata, you need to create a character class that can be used for a roguelike game. Instances of this class must have the characteristics strength, dexterity and intelligence and can call some test-generated methods that will change these characteristics or give the character a new weapon.
 
 The Character class must have 2 mandatory instance methods - one will display character information and the other will display the event log. Only these output methods will be checked by tests The names of the properties or how the user stores any values is entirely up to the user and individual properties will not be checked.
@@ -46,7 +56,7 @@ Weapon damage is set by parameters passed to the method, which give damage depen
 In this case, the Axe of fire has parameters `3, 1, 0, 20`. This means that the damage from this weapon will be calculated according to the formula
 
 ```math
-3 * strength + 1 * dexterity + 0 * intelligence + 20 = 3 * 15 + 1 * 10 + 0 * 7 + 20 = 75
+3 \times strength + 1 \times dexterity + 0 \times intelligence + 20 = 3 \times 15 + 1 \times 10 + 0 \times 7 + 20 = 75
 ```
 
 The weapon and its total damage should appear in the character info output. Damage computation calculation, hence the output of the character info thing is done with the stats of the Character at call time.
@@ -69,7 +79,7 @@ console.log(ch.eventLog());
 ```
 
 ```
-Kroker find 'Axe of fire'
+Kroker finds 'Axe of fire'
 ```
 
 The character finds another weapon that will do more damage
@@ -109,9 +119,9 @@ ch.axeOfFire(1, 2, 1, 10);
 
 Now there are 2 'Axe of fire', so let’s enchant one of them by destroying the second one. The enchantment will make each damage parameter maximum from those of the 2 original weapons.
 ```math
-(3, 1, 0, 20) and (1, 2, 1, 10) => ((3>1=3), (1<2=2), (0<1=1), (20>10=20)) => (3, 2, 1, 20)
+(3, 1, 0, 20) and (1, 2, 1, 10) \Rightarrow (max(3,1), max(1,2), max(0,1), max(20,10)) \Rightarrow (3, 2, 1, 20)
 ```
-The character info output shows enhanced weapons. In the output, `'(enchanted)'` is added to the name of the improved weapon
+The character info output shows enhanced weapons. In the output, `'(enhanced)'` is added to the name of the improved weapon
 
 ```
 Kroker
@@ -121,7 +131,7 @@ int 7
 Axe of fire(enhanced) 92 dmg
 ```
 
-For the new enchantment it is considered the same as the weapon of the same name without '(enchanted)' suffix, that is, you can combine an improved one with an unimproved one if you come across a 3rd one that is the same
+For the new enchantment it is considered the same as the weapon of the same name without `'(enhanced)'` suffix, that is, you can combine an improved one with an unimproved one if you come across a 3rd one that is the same
 
 Random events that changes characteristics
 -
@@ -160,8 +170,8 @@ puts ch.event_log
 console.log(ch.eventLog());
 ```
 ```
-Kroker find 'Axe of fire'
-Kroker find 'Staff of water'
-Kroker find 'Axe of fire'
+Kroker finds 'Axe of fire'
+Kroker finds 'Staff of water'
+Kroker finds 'Axe of fire'
 Strange fruit: strength -2, intelligence +2
 ```

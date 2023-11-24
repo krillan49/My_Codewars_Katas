@@ -35,7 +35,7 @@ class Character {
     }
     this.bag[weaponName] = dmg.concat([dmg[0] * this.strength + dmg[1] * this.dexterity + dmg[2] * this.intelligence + dmg[3]]);
     this.bestWeapon();
-    this.log.push(`${this.name} find '${weaponName}'`);
+    this.log.push(`${this.name} finds '${weaponName}'`);
   }
   stats(eventName, stats) {
     this.strength     += stats[0];

@@ -31,13 +31,13 @@ describe "Sample tests" do
     expect(@test.character_info).to eq res
   end
 
-  it "sample test 2: Character find weapon" do
+  it "sample test 2: Character finds weapon" do
     test2
     res = "Kroker\nstr 15\ndex 10\nint 7\nAxe of fire 75 dmg"
     expect(@test.character_info).to eq res
   end
 
-  it "sample test 3: Character find second weapon" do
+  it "sample test 3: Character finds second weapon" do
     test3
     res = "Kroker\nstr 15\ndex 10\nint 7\nStaff of water 89 dmg"
     expect(@test.character_info).to eq res
@@ -57,7 +57,7 @@ describe "Sample tests" do
 
   it "sample test 6: Show event log" do
     test5
-    res = "Kroker find 'Axe of fire'\nKroker find 'Staff of water'\nKroker find 'Axe of fire'\nStrange fruit: strength -2, intelligence +2"
+    res = "Kroker finds 'Axe of fire'\nKroker finds 'Staff of water'\nKroker finds 'Axe of fire'\nStrange fruit: strength -2, intelligence +2"
     expect(@test.event_log).to eq res
   end
 end
