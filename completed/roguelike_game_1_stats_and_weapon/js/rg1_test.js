@@ -51,14 +51,7 @@ describe("Sample tests", () => {
     test.axeOfFire(1, 2, 1, 10);
     test.strangeFruit(-2, 0, 2);
     const res = `Kroker finds 'Axe of fire'\nKroker finds 'Staff of water'\nKroker finds 'Axe of fire'\nStrange fruit: strength -2, intelligence +2`;
-
-    let rv = res.split("\n");
-    let message = [];
-    test.eventLog().split("\n").forEach((ev, i) => {
-      if (ev != rv[i]) message.push(`line ${i+1}. expected: ${rv[i]}; got: ${ev}`);
-    });
-
-    assert.strictEqual(test.eventLog(), res, JSON.stringify(message));
+    assert.strictEqual(test.eventLog(), res);
   });
 
   it("sample test 7: Character change stat to zero", () => {
@@ -206,14 +199,7 @@ describe("Random tests", () => {
     });
 
     it(`log test ${n}`, () => {
-
-      let rv = sol.eventLog().split("\n");
-      let message = [];
-      test.eventLog().split("\n").forEach((ev, i) => {
-        if (ev != rv[i]) message.push(`line ${i+1}. expected: ${rv[i]}; got: ${ev}`);
-      });
-
-      assert.strictEqual(test.eventLog(), sol.eventLog(), JSON.stringify(message));
+      assert.strictEqual(test.eventLog(), sol.eventLog());
     });
   }
 

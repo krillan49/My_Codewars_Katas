@@ -1,13 +1,3 @@
----
-
-Changes that break old solutions (section only for the beta period)
--
-
-24.11.23 -- In the output of the `eventLog` method the word `find` was replaced with `finds`
-
----
-
-
 To solve this kata, you need to create a character class that can be used for a roguelike game. Instances of this class must have the characteristics strength, dexterity and intelligence and can call some test-generated methods that will change these characteristics or give the character a new weapon.
 
 The Character class must have 2 mandatory instance methods - one will display character information and the other will display the event log. Only these output methods will be checked by tests The names of the properties or how the user stores any values is entirely up to the user and individual properties will not be checked.

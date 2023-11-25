@@ -19,7 +19,7 @@
       <td>
         <a href="https://www.codewars.com/kata/651bfcbd409ea1001ef2c3cb">Roguelike game 1 - stats and weapon</a>
       </td>
-      <td>js, ruby</td> <td>Beta</td> <th>-</th>
+      <td>js, ruby</td> <td>5kyu</td> <th>-</th>
     </tr>
   </tbody>
 </table>
