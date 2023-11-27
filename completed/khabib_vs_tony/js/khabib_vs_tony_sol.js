@@ -13,18 +13,18 @@ function actionPoints(upcase, exclamation){
 }
 
 function khabibVsTony(joeAndNate){
-  var habibPoints = 0, tonyPoints = 0, habibHp = 100, tonyHp = 100, position = 'standing';
+  let habibPoints = 0, tonyPoints = 0, habibHp = 100, tonyHp = 100, position = 'standing';
   joeAndNate = joeAndNate.split(' ').filter(s => khabib.concat(tony).includes(s.toLowerCase().replace(/[^a-z]/g, '')))
 
   for (var action of joeAndNate) {
     action = action.replace(/[^a-z!]/gi, '');
-    var upcase = action == action.toUpperCase() ? true : false;
-    var exclamation = action[action.length-1] == '!' ? true : false;
-    var res = [action, upcase, exclamation];
+    let upcase = action == action.toUpperCase() ? true : false;
+    let exclamation = action[action.length-1] == '!' ? true : false;
+    let res = [action, upcase, exclamation];
     action = action.toLowerCase().replace('!', '');
     if (['takedown', 'hammerfist', 'imanary'].includes(action)) position = 'ground';
     if (['jab', 'overhand', 'punch', 'kick'].includes(action)) position = 'standing';
-    var ap = actionPower(upcase, exclamation);
+    let ap = actionPower(upcase, exclamation);
 
     if (action == 'submission' && habibHp > tonyHp && tonyHp < 20) {
       habibPoints += actionPoints(upcase, exclamation);
