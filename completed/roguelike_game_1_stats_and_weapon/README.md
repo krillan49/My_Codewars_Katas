@@ -111,9 +111,9 @@ Staff of water 89 dmg
 
 The character retains all the weapons found, that is, although we replaced the 'Axe of fire' with the 'Staff of water', the 'Axe of fire' will remain in the character’s inventory
 
-Enhancment
+Enhancement
 -
-If a character has 2 weapons with the same name, then he enhances one of them and destroys the second.
+If a character has 2 weapons with the same name, then he enhances one of them and destroys the other.
 
 ```ruby
 ch.axe_of_fire(1, 2, 1, 10)
@@ -125,7 +125,7 @@ ch.axeOfFire(1, 2, 1, 10);
 ch.axe_of_fire(1, 2, 1, 10)
 ```
 
-Now there are 2 'Axe of fire', so let’s enhance one of them by destroying the second one. The enhancment will make each damage parameter maximum from those of the 2 original weapons.
+Now there are 2 'Axe of fire', so let’s enhance one of them by destroying the other one. The enhancement will make each damage parameter maximum from those of the 2 original weapons.
 ```math
 (3, 1, 0, 20) and (1, 2, 1, 10) \Rightarrow (max(3,1), max(1,2), max(0,1), max(20,10)) \Rightarrow (3, 2, 1, 20)
 ```
@@ -139,7 +139,7 @@ int 7
 Axe of fire(enhanced) 92 dmg
 ```
 
-For the new enhanсment, an `'(enhanced)'` weapon is considered the same as a non-enhanced weapon with the same name. For example: from `'Axe of fire(enhanced)'` and new `'Axe of fire'` we will make an enhanсment and get new `'Axe of fire(enhanced)'`
+For the new enhancement, an `'(enhanced)'` weapon is considered the same as a non-enhanced weapon with the same name. For example: from `'Axe of fire(enhanced)'` and new `'Axe of fire'` we will make an enhancement and get new `'Axe of fire(enhanced)'`
 
 Random events that changes characteristics
 -
