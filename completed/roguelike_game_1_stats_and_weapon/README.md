@@ -12,6 +12,9 @@ ch = Character.new(name: 'Kroker', strength: 15, intelligence: 7)
 ```javascript
 const ch = new Character({name: 'Kroker', strength: 15, intelligence: 7});
 ```
+```python
+ch = Character(name='Kroker', strength=15, intelligence=7)  
+```
 
 The method giving the character's info returns a multiline string. Let's check, the missing characteristic will be equal to 10, and the weapon will be `'limbs'`
 
@@ -20,6 +23,9 @@ puts ch.character_info #=> "Kroker\nstr 15\ndex 10\nint 7\nlimbs 32 dmg"
 ```
 ```javascript
 console.log(ch.characterInfo()); //=> `Kroker\nstr 15\ndex 10\nint 7\nlimbs 32 dmg`
+```
+```python
+print(ch.character_info()) #=> "Kroker\nstr 15\ndex 10\nint 7\nlimbs 32 dmg"
 ```
 
 ```
@@ -40,6 +46,9 @@ ch.axe_of_fire(3, 1, 0, 20) # weapon method name can be anything as long as it m
 ```javascript
 ch.axeOfFire(3, 1, 0, 20); // weapon method name can be anything as long as it matches weaponOfSomething
 ```
+```python
+ch.axe_of_fire(3, 1, 0, 20) # weapon method name can be anything as long as it matches weapon_of_something
+```
 
 Weapon damage is set by parameters passed to the method, which give damage depending on characteristics and additional damage.(always the order: strength, dexterity, intellect, extra damage), the number of parameters are always 4.
 
@@ -49,7 +58,7 @@ In this case, the Axe of fire has parameters `3, 1, 0, 20`. This means that the 
 3 \times strength + 1 \times dexterity + 0 \times intelligence + 20 = 3 \times 15 + 1 \times 10 + 0 \times 7 + 20 = 75
 ```
 
-The weapon and its total damage should appear in the character info output. Damage computation calculation, hence the output of the character info thing is done with the stats of the Character at call time.
+The weapon and its total damage should appear in the character info output. Damage computation calculation, hence the output of the character info thing is done with the stats of the Character at call time. Since the `'Axe of fire'`, unlike the `'limbs'`, is a name, it must be capitalized
 
 ```
 Kroker
@@ -67,6 +76,9 @@ puts ch.event_log
 ```javascript
 console.log(ch.eventLog());
 ```
+```python
+print(ch.event_log())
+```
 
 ```
 Kroker finds 'Axe of fire'
@@ -83,6 +95,9 @@ ch.staff_of_water(1, 0, 2, 60)
 ```javascript
 ch.staffOfWater(1, 0, 2, 60);
 ```
+```python
+ch.staff_of_water(1, 0, 2, 60)
+```
 
 Staff of water has 89 damage`(1 * 15 + 0 * 10 + 7 * 2 + 60)` this is more than the 'Axe of fire', which means we need to change weapons.
 
@@ -96,9 +111,9 @@ Staff of water 89 dmg
 
 The character retains all the weapons found, that is, although we replaced the 'Axe of fire' with the 'Staff of water', the 'Axe of fire' will remain in the character’s inventory
 
-Enchant
+Enhancment
 -
-If a character has 2 weapons with the same name, then he enchants one of them and destroys the second.
+If a character has 2 weapons with the same name, then he enhances one of them and destroys the second.
 
 ```ruby
 ch.axe_of_fire(1, 2, 1, 10)
@@ -106,8 +121,11 @@ ch.axe_of_fire(1, 2, 1, 10)
 ```javascript
 ch.axeOfFire(1, 2, 1, 10);
 ```
+```python
+ch.axe_of_fire(1, 2, 1, 10)
+```
 
-Now there are 2 'Axe of fire', so let’s enchant one of them by destroying the second one. The enchantment will make each damage parameter maximum from those of the 2 original weapons.
+Now there are 2 'Axe of fire', so let’s enhance one of them by destroying the second one. The enhancment will make each damage parameter maximum from those of the 2 original weapons.
 ```math
 (3, 1, 0, 20) and (1, 2, 1, 10) \Rightarrow (max(3,1), max(1,2), max(0,1), max(20,10)) \Rightarrow (3, 2, 1, 20)
 ```
@@ -121,7 +139,7 @@ int 7
 Axe of fire(enhanced) 92 dmg
 ```
 
-For the new enchantment it is considered the same as the weapon of the same name without `'(enhanced)'` suffix, that is, you can combine an improved one with an unimproved one if you come across a 3rd one that is the same
+For the new enhanсment, an `'(enhanced)'` weapon is considered the same as a non-enhanced weapon with the same name. For example: from `'Axe of fire(enhanced)'` and new `'Axe of fire'` we will make an enhanсment and get new `'Axe of fire(enhanced)'`
 
 Random events that changes characteristics
 -
@@ -132,6 +150,9 @@ ch.strange_fruit(-2, 0, 2)
 ```
 ```javascript
 ch.strangeFruit(-2, 0, 2);
+```
+```python
+ch.strange_fruit(-2, 0, 2)
 ```
 
 The 'Strange fruit' does not change dexterity, as the 2nd coefficient is 0, but it adds -2 strength and +2 intelligence.
@@ -158,6 +179,9 @@ puts ch.event_log
 ```
 ```javascript
 console.log(ch.eventLog());
+```
+```python
+print(ch.event_log())
 ```
 ```
 Kroker finds 'Axe of fire'
