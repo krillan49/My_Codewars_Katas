@@ -63,6 +63,17 @@ describe("Sample tests", () => {
     assert.strictEqual(test.characterInfo(), res);
   });
 
+  it("sample test 8: Pick the correct weapon in case of equal damages", () => {
+    const test = new Character({name: 'Porky', strength: 15, intelligence: 7});
+    test.pillarOfWater(4, 1, 2, 60);
+    test.axeOfFire(3, 1, 2, 20);
+    test.dunderOfWater(0, 2, 0, 1);
+    test.axeOfFire(4, 0, 1, 60);
+    test.staffOfWater(4, 1, 2, 60);
+    const res = `Porky\nstr 15\ndex 10\nint 7\nAxe of fire(enhanced) 144 dmg`;
+    assert.strictEqual(test.characterInfo(), res);
+  });
+
 });
 
 describe("Random tests", () => {

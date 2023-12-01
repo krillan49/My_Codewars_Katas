@@ -60,6 +60,17 @@ describe "Sample tests" do
     res = "Kroker finds 'Axe of fire'\nKroker finds 'Staff of water'\nKroker finds 'Axe of fire'\nStrange fruit: strength -2, intelligence +2"
     expect(@test.event_log).to eq res
   end
+
+  it "sample test 7: Pick the correct weapon in case of equal damages" do
+    ch = Character.new(name: 'Porky', strength: 15, intelligence: 7)
+    ch.pillar_of_water(4, 1, 2, 60)
+    ch.axe_of_fire(3, 1, 2, 20)
+    ch.dunder_of_water(0, 2, 0, 1)
+    ch.axe_of_fire(4, 0, 1, 60)
+    ch.staff_of_water(4, 1, 2, 60)
+    res = "Porky\nstr 15\ndex 10\nint 7\nAxe of fire(enhanced) 144 dmg"
+    expect(ch.character_info).to eq res
+  end
 end
 
 
