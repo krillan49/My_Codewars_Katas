@@ -198,20 +198,40 @@ describe("Random tests", () => {
     let charStart = startChar();
     let sol = new CharForTest(charStart);
     let test = new Character(charStart);
+    let evs = events();
     // events
-    events().forEach(arr => {
-      let event = arr[0], values = arr[1];
-      sol[event](...values);
-      test[event](...values);
-    });
+    for (let i = 0; i < evs.length; i++){
+      it(`Character ${n}: info test ${i+1}`, () => {
+        let event = evs[i][0], values = evs[i][1];
+        sol[event](...values);
+        test[event](...values);
+        assert.strictEqual(test.characterInfo(), sol.characterInfo());
+      });
+    }
 
-    it(`info test ${n}`, () => {
-      assert.strictEqual(test.characterInfo(), sol.characterInfo());
-    });
-
-    it(`log test ${n}`, () => {
+    it(`Character ${n}: log test`, () => {
       assert.strictEqual(test.eventLog(), sol.eventLog());
     });
   }
+  // for (let n = 1; n <= 50; n++) {
+  //   // chars
+  //   let charStart = startChar();
+  //   let sol = new CharForTest(charStart);
+  //   let test = new Character(charStart);
+  //   // events
+  //   events().forEach(arr => {
+  //     let event = arr[0], values = arr[1];
+  //     sol[event](...values);
+  //     test[event](...values);
+  //   });
+  //
+  //   it(`info test ${n}`, () => {
+  //     assert.strictEqual(test.characterInfo(), sol.characterInfo());
+  //   });
+  //
+  //   it(`log test ${n}`, () => {
+  //     assert.strictEqual(test.eventLog(), sol.eventLog());
+  //   });
+  // }
 
 });
