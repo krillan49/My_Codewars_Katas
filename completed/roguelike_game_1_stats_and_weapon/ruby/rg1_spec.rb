@@ -73,55 +73,108 @@ describe "Sample tests" do
   end
 end
 
+def random_word
+  rand(3..10).times.with_object([]){|_, arr| arr << rand(97..122).chr}.join
+end
+
+def start_char
+  stats, char_start = [:strength, :dexterity, :intelligence], []
+  rand(1..3).times do
+    stats.shuffle!
+    char_start << stats.pop
+  end
+  char_start = char_start.map{|st| [st, rand(5..15)]}.to_h
+  char_start[:name] = random_word.capitalize if rand(6) < 5
+  char_start
+end
+
+def events
+  events = rand(5..20).times.with_object([]) do |_, arr|
+    event = %w[weapon stats].sample
+    if event == 'weapon'
+      type = %w[sword axe mace spear staff].sample
+      element = (%w[fire water ice light dark] + [random_word]).sample
+      res = type + '_of_' + element
+      values = [rand(6), rand(6), rand(6), rand(100)]
+    else
+      type = %w[strange horrible ancient magical].sample
+      element = (%w[fruit blessing curse book elixir] + [random_word]).sample
+      res = type + '_' + element
+      values = [rand(-2..2), rand(-2..2), rand(-2..2)]
+    end
+    arr << [res, values]
+  end
+end
 
 describe "Random tests" do
-  def random_word
-    rand(3..10).times.with_object([]){|_, arr| arr << rand(97..122).chr}.join
-  end
 
-  before do
-    # start stats
-    stats, char_start = [:strength, :dexterity, :intelligence], []
-    rand(1..3).times do
-      stats.shuffle!
-      char_start << stats.pop
-    end
-    char_start = char_start.map{|st| [st, rand(5..15)]}.to_h
-    # name
-    # char_start[:name] = random_word.capitalize
-    char_start[:name] = random_word.capitalize if rand(6) < 5
-    # obj
-    @sol = Solution::Character.new(**char_start)
-    @test = Character.new(**char_start)
-    # hash of events
-    events = rand(5..20).times.with_object([]) do |_, arr|
-      event = %w[weapon stats].sample
-      if event == 'weapon'
-        type = %w[sword axe mace spear staff].sample
-        element = (%w[fire water ice light dark] + [random_word]).sample
-        res = type + '_of_' + element
-        values = [rand(6), rand(6), rand(6), rand(100)]
-      else
-        type = %w[strange horrible ancient magical].sample
-        element = (%w[fruit blessing curse book elixir] + [random_word]).sample
-        res = type + '_' + element
-        values = [rand(-2..2), rand(-2..2), rand(-2..2)]
+
+  # before do
+  #   # start stats
+  #   stats, char_start = [:strength, :dexterity, :intelligence], []
+  #   rand(1..3).times do
+  #     stats.shuffle!
+  #     char_start << stats.pop
+  #   end
+  #   char_start = char_start.map{|st| [st, rand(5..15)]}.to_h
+  #   # name
+  #   # char_start[:name] = random_word.capitalize
+  #   char_start[:name] = random_word.capitalize if rand(6) < 5
+  #   # obj
+  #   @sol = Solution::Character.new(**char_start)
+  #   @test = Character.new(**char_start)
+  #   # hash of events
+  #   events = rand(5..20).times.with_object([]) do |_, arr|
+  #     event = %w[weapon stats].sample
+  #     if event == 'weapon'
+  #       type = %w[sword axe mace spear staff].sample
+  #       element = (%w[fire water ice light dark] + [random_word]).sample
+  #       res = type + '_of_' + element
+  #       values = [rand(6), rand(6), rand(6), rand(100)]
+  #     else
+  #       type = %w[strange horrible ancient magical].sample
+  #       element = (%w[fruit blessing curse book elixir] + [random_word]).sample
+  #       res = type + '_' + element
+  #       values = [rand(-2..2), rand(-2..2), rand(-2..2)]
+  #     end
+  #     arr << [res, values]
+  #   end
+  #   # start events
+  #   events.each do |event, values|
+  #     @sol.send(event, *values)
+  #     @test.send(event, *values)
+  #   end
+  # end
+  #
+  # 50.times do |n|
+  #   it "info test #{n+1}" do
+  #     expect(@test.character_info).to eq @sol.character_info
+  #   end
+  #   it "log test #{n+1}" do
+  #     expect(@test.event_log).to eq @sol.event_log
+  #   end
+  # end
+
+  1.times do |n|
+    describe "Character #{n+1}" do
+      char_start = start_char
+      @sol = Solution::Character.new(**char_start)
+      @test = Character.new(**char_start)
+
+      events.each.with_index(1) do |(event, values), i|
+
+
+        it "info test #{i}" do
+          @sol.send(event, *values)
+          @test.send(event, *values)
+          expect(@test.character_info).to eq @sol.character_info
+        end
       end
-      arr << [res, values]
-    end
-    # start events
-    events.each do |event, values|
-      @sol.send(event, *values)
-      @test.send(event, *values)
+
+      it "log test" do
+        expect(@test.event_log).to eq @sol.event_log
+      end
     end
   end
 
-  50.times do |n|
-    it "info test #{n+1}" do
-      expect(@test.character_info).to eq @sol.character_info
-    end
-    it "log test #{n+1}" do
-      expect(@test.event_log).to eq @sol.event_log
-    end
-  end
 end
