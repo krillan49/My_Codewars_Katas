@@ -155,15 +155,15 @@ describe "Random tests" do
   #   end
   # end
 
-  1.times do |n|
+  50.times do |n|
     describe "Character #{n+1}" do
-      char_start = start_char
-      @sol = Solution::Character.new(**char_start)
-      @test = Character.new(**char_start)
+      before(:all) do
+        char_start = start_char
+        @sol = Solution::Character.new(**char_start)
+        @test = Character.new(**char_start)
+      end
 
       events.each.with_index(1) do |(event, values), i|
-
-
         it "info test #{i}" do
           @sol.send(event, *values)
           @test.send(event, *values)
