@@ -1,6 +1,8 @@
 module Solution
 
   class Character
+    attr_reader :bag
+    
     def initialize(**kwargs)
       @name         = kwargs[:name] || 'Hero'
       @strength     = kwargs[:strength] || 10
