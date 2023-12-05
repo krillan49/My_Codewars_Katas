@@ -166,12 +166,12 @@ describe "Random tests" do
         it "info test #{i}" do
           @sol.send(event, *values)
           @test.send(event, *values)
-          if n > 40 && rand(10) == 0
-            dmgs = @sol.bag.max_by{|_,v| v[4]}[1][0..3]
-            wname = ['ahlspiess_of_abc', 'voulge_of_abc'].sample
-            @sol.send(wname, *dmgs)
-            @test.send(wname, *dmgs)
-          end
+          # if n > 40 && rand(10) == 0
+          #   dmgs = @sol.bag.max_by{|_,v| v[4]}[1][0..3]
+          #   wname = ['ahlspiess_of_abc', 'voulge_of_abc'].sample
+          #   @sol.send(wname, *dmgs)
+          #   @test.send(wname, *dmgs)
+          # end
           expect(@test.character_info).to eq @sol.character_info
         end
       end

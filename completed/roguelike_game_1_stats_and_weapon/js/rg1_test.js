@@ -193,24 +193,26 @@ describe("Random tests", () => {
   }
 
   // tests
-  for (let n = 1; n <= 50; n++) {
-    // chars
-    let charStart = startChar();
-    let sol = new CharForTest(charStart);
-    let test = new Character(charStart);
-    let evs = events();
-    // events
-    for (let i = 0; i < evs.length; i++){
-      it(`Character ${n}: info test ${i+1}`, () => {
-        let event = evs[i][0], values = evs[i][1];
-        sol[event](...values);
-        test[event](...values);
-        assert.strictEqual(test.characterInfo(), sol.characterInfo());
-      });
-    }
+  for (let n = 1; n <= 100; n++) {
+    describe(`Character ${n}`, () => {
+      // chars
+      let charStart = startChar();
+      let sol = new CharForTest(charStart);
+      let test = new Character(charStart);
+      let evs = events();
+      // events
+      for (let i = 0; i < evs.length; i++){
+        it(`info test ${i+1}`, () => {
+          let event = evs[i][0], values = evs[i][1];
+          sol[event](...values);
+          test[event](...values);
+          assert.strictEqual(test.characterInfo(), sol.characterInfo());
+        });
+      }
 
-    it(`Character ${n}: log test`, () => {
-      assert.strictEqual(test.eventLog(), sol.eventLog());
+      it(`log test`, () => {
+        assert.strictEqual(test.eventLog(), sol.eventLog());
+      });
     });
   }
   // for (let n = 1; n <= 50; n++) {
