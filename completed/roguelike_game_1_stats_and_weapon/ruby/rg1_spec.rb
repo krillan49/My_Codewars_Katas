@@ -167,7 +167,7 @@ describe "Random tests" do
           @sol.send(event, *values)
           @test.send(event, *values)
 
-          if n > 40 && rand(10) == 0
+          if n > 40 && rand(10) == 0 # additional check for sorting by name
             dmgs = @sol.bag.max_by{|_,v| v[4]}[1][0..3]
             wname = ['ahlspiess_of_abc', 'voulge_of_abc'].sample
             @sol.send(wname, *dmgs)

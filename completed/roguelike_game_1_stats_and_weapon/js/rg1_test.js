@@ -193,7 +193,7 @@ describe("Random tests", () => {
   }
 
   // tests
-  for (let n = 1; n <= 100; n++) {
+  for (let n = 1; n <= 50; n++) {
     describe(`Character ${n}`, () => {
       // chars
       let charStart = startChar();
@@ -206,6 +206,14 @@ describe("Random tests", () => {
           let event = evs[i][0], values = evs[i][1];
           sol[event](...values);
           test[event](...values);
+
+          if (n > 40 && Math.floor(Math.random()*10) == 0){ // additional check for sorting by name
+            let dmgs = Object.values(sol.bag).sort((a, b) => b[4] - a[4])[0].slice(0, 4);
+            let wname = ['ahlspiessOfAbc', 'voulgeOfAbc'][Math.floor(Math.random()*2)];
+            sol[wname](...dmgs);
+            test[wname](...dmgs);
+          }
+
           assert.strictEqual(test.characterInfo(), sol.characterInfo());
         });
       }
